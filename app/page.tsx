@@ -73,7 +73,7 @@ export default function Home() {
     <header className="site-header">
       <a className="brand" href="#top"><span className="brand-symbol"><i/><i/><i/></span><span><b>VOICEBOT</b><em>INCIDENT NUCLÉAIRE</em></span></a>
       <nav className={menuOpen ? "open" : ""} aria-label="Navigation principale">
-        <a href="#top">Accueil</a><a href="#fonctionnalites">Fonctionnalités</a><a href="#consignes">Consignes</a><a href="#architecture">Architecture</a><a href="#sources">Sources</a>
+        <a href="#top">Accueil</a><a href="#fonctionnalites">Fonctionnalités</a><a href="#consignes">Comment ça fonctionne</a><a href="#architecture">Technologie</a><a href="#incidents">Incidents</a><a href="#sources">Sources</a>
       </nav>
       <button className="call-button header-call" onClick={startCall}><span>●</span> Tester le bot</button>
       <button className="menu-toggle" onClick={() => setMenuOpen(!menuOpen)} aria-label="Ouvrir le menu"><i/><i/></button>
@@ -85,13 +85,15 @@ export default function Home() {
       <div className="hero-shade"/>
       <div className="hero-content">
         <p className="eyebrow">INFORMATION NUCLÉAIRE · BELGIQUE</p>
-        <h1>UNE VOIX FIABLE<br/>POUR VOUS GUIDER<br/><span>EN CAS D’INCIDENT</span></h1>
+        <h1>UNE VOIX FIABLE<br/>POUR VOUS INFORMER<br/>ET VOUS GUIDER<br/><span>EN CAS D’INCIDENT<br/>NUCLÉAIRE</span></h1>
         <p className="hero-lead">Un assistant vocal trilingue qui restitue les consignes officielles, sans rumeur, sans diagnostic et sans invention.</p>
         <div className="hero-chips"><span><b>◖◗</b>Information contrôlée</span><span><b>✓</b>Consignes officielles</span><span><b>FR</b>Accessible en trois langues</span></div>
         <div className="hero-actions"><button className="call-button" onClick={startCall}>Tester le voicebot <b>→</b></button><a href="#consignes">Voir les consignes <b>↓</b></a></div>
       </div>
       <div className="scroll-note">Faire défiler <span>↓</span></div>
     </section>
+
+    <section className="audience-rail" aria-label="Publics du service"><article><b>Citoyens</b><small>Comprendre une consigne officielle</small></article><article><b>Communes</b><small>Absorber les questions répétitives</small></article><article><b>Cellules de crise</b><small>Diffuser un message validé</small></article><article><b>Organisations</b><small>Informer personnel et visiteurs</small></article></section>
 
     <section id="fonctionnalites" className="section shell">
       <Heading eyebrow="LE SERVICE" title={<>Une ligne claire quand<br/>l’information déborde.</>} text="Le voicebot ne décide pas à la place des autorités. Il rend une information validée immédiatement compréhensible, dans la langue de l’appelant."/>
@@ -111,14 +113,21 @@ export default function Home() {
       <Heading eyebrow="COMMENT ÇA FONCTIONNE" title={<>Le modèle parle.<br/>La donnée décide.</>} text="Une chaîne conçue pour empêcher une réponse générative de devenir une instruction opérationnelle sans validation."/>
       <div className="architecture-bento bento-stack">
         <article className="bento-card arch-main" data-reveal><p className="eyebrow">PARCOURS D’UN APPEL</p><div className="flow"><span>APPEL</span><i>→</i><span>LANGUE</span><i>→</i><span>INTENTION</span><i>→</i><span>SOURCE</span><i>→</i><span>RÉPONSE</span></div><h3>La sécurité reste prioritaire à chaque étape.</h3></article>
-        <article className="bento-card" data-reveal><div className="bento-pictogram">AI</div><h3>Agent vocal</h3><p>Dialogue, voix natives et règles de sécurité.</p></article>
-        <article className="bento-card" data-reveal><div className="bento-pictogram">DB</div><h3>Supabase</h3><p>Consignes versionnées, portée, validité et audit.</p></article>
-        <article className="bento-card" data-reveal><div className="bento-pictogram">↻</div><h3>n8n</h3><p>Collecte, contrôles et validation humaine avant publication.</p></article>
+        {[
+          ["01","/icons/features/phone.png","Entrée téléphonique","WebRTC et ligne dédiée accueillent l’appel sans décider du contenu.","Canal web · téléphonie"],
+          ["02","/icons/technology/network.png","Protection réseau","Contrôle d’admission, charge, fraude et accès avant la conversation.","Filtrage · disponibilité"],
+          ["03","/icons/technology/audio.png","Analyse vocale","Transcription temps réel et bascule vers la voix native choisie.","FR · NL · DE"],
+          ["04","/icons/technology/ai.png","Compréhension IA","Question libre, contexte limité et réponses courtes gouvernées par le prompt.","ElevenLabs · règles strictes"],
+          ["05","/icons/technology/routing.png","Triage de sécurité","Danger immédiat, information, hors périmètre ou absence de donnée fraîche.","Priorité 112"],
+          ["06","/icons/technology/api.png","Connaissance contrôlée","Supabase conserve source, portée, validité, versions et approbation humaine.","Supabase · n8n"],
+          ["07","/icons/technology/audit.png","Traçabilité","Conversations de test, versions, décisions techniques et durée de conservation.","Audit · accès limité"],
+        ].map(([n,img,t,d,s])=><article className="bento-card arch-layer" key={n} data-reveal><b>{n}</b><img src={img} alt=""/><h3>{t}</h3><p>{d}</p><small>{s}</small></article>)}
       </div>
+      <div className="protection-grid bento-stack"><article className="bento-card" data-reveal><img src="/icons/technology/ai.png" alt=""/><h3>Anti-hallucination</h3><ul><li>Base fermée et contrôlée</li><li>Aucun ordre local inventé</li><li>Historique séparé du temps réel</li></ul></article><article className="bento-card" data-reveal><img src="/icons/features/bell.png" alt=""/><h3>Sécurité d’urgence</h3><ul><li>Consigne 112 prioritaire</li><li>Pas de faux transfert</li><li>Pas de diagnostic ni calcul de dose</li></ul></article><article className="bento-card" data-reveal><img src="/icons/technology/audit.png" alt=""/><h3>Gouvernance des données</h3><ul><li>Accès restreint</li><li>Finalité documentée</li><li>Validation humaine obligatoire</li></ul></article></div>
       <Link className="inline-link" href="/architecture">Voir l’architecture détaillée →</Link>
     </section>
 
-    <section className="section incidents-section"><div className="shell"><Heading eyebrow="MÉMOIRE & PRÉPARATION" title={<>Les incidents passés<br/>expliqués sans confusion.</>} text="L’histoire permet de comprendre l’utilité du service. Elle ne devient jamais une alerte actuelle." light/>
+    <section id="incidents" className="section incidents-section"><div className="shell"><Heading eyebrow="MÉMOIRE & PRÉPARATION" title={<>Les incidents passés<br/>expliqués sans confusion.</>} text="L’histoire permet de comprendre l’utilité du service. Elle ne devient jamais une alerte actuelle." light/>
       <div className="incident-bento bento-stack"><article className="bento-card" data-reveal><time>2006</time><h3>Sterigenics · Fleurus</h3><p>Accident d’irradiation d’un travailleur · INES quatre.</p></article><article className="bento-card" data-reveal><time>2008</time><h3>IRE · Fleurus</h3><p>Rejet anormal d’iode radioactif · INES trois.</p></article><article className="bento-card" data-reveal><time>1986 · 2011</time><h3>Tchernobyl · Fukushima</h3><p>Deux accidents majeurs documentés par l’AFCN et l’AIEA.</p></article></div>
       <Link className="inline-link light-link" href="/incidents">Voir la chronologie officielle →</Link>
     </div></section>
@@ -129,7 +138,12 @@ export default function Home() {
     </section>
 
     <section className="final-cta"><div className="shell" data-reveal><p className="eyebrow">PROTOTYPE TRILINGUE</p><h2>Écoutez la ligne<br/>avant d’en avoir besoin.</h2><button className="call-button" onClick={startCall}>Tester le voicebot <b>→</b></button><p>Ce test ne contacte pas les secours. En danger immédiat : 112.</p></div></section>
-    <footer><div className="shell"><a className="brand" href="#top"><span className="brand-symbol"><i/><i/><i/></span><span><b>VOICEBOT</b><em>INCIDENT NUCLÉAIRE</em></span></a><p>Prototype d’information publique · Belgique</p><div><Link href="/sources">Sources</Link><Link href="/incidents">Incidents</Link><Link href="/architecture">Architecture</Link></div></div></footer>
+    <footer className="company-footer"><div className="shell footer-main">
+      <div className="footer-company"><img src="/brand/banana-navy-logo.png" alt="Banana Navy"/><h2>Trusted voice agents<br/>&amp; agentic systems</h2><p>Nous concevons des VoiceBots sécurisés et hybrides, alliant intelligence vocale et systèmes de contrôle fiables.</p></div>
+      <div className="footer-commitments"><p className="footer-kicker">Nos engagements</p><ul><li><span>24/7</span>Disponible vingt-quatre heures sur vingt-quatre</li><li><span>AI</span>Protection anti-hallucination</li><li><span>§</span>Sécurité et RGPD</li><li><span>DB</span>Bases de données complexes</li></ul></div>
+      <div className="footer-contact"><p className="footer-kicker">Contact</p><address><strong>Marc-Antoine Cajot</strong><a href="tel:+32495277044">+32 495 277 044</a><a href="mailto:marc@banana-navy.com">marc@banana-navy.com</a><a href="https://www.banana-navy.ai" target="_blank" rel="noreferrer">www.banana-navy.ai</a><span>Rue Antoine de Saint-Exupéry 2<br/>6041 Charleroi, Belgique</span></address></div>
+    </div><div className="shell footer-program"><div><p className="footer-kicker">Programme &amp; institutions partenaires</p><div className="partner-logos"><img src="/brand/badge-defence.png" alt="Belgian Defence"/><img src="/brand/badge-crest-royal.png" alt="Écusson royal"/><img src="/brand/badge-strike-it.png" alt="STRIKE IT"/><img src="/brand/badge-cyberforce.png" alt="Cyber Force"/></div></div><div><p>Banana Navy a été sélectionnée et est soutenue par la Défense belge dans le cadre du programme STRIKE IT, pour le développement d’une technologie de VoiceBot sécurisée et fiable.</p><p lang="en">Banana Navy has been selected and is supported by the Belgian Defence through the STRIKE IT program for the development of a secure and reliable VoiceBot technology.</p></div></div>
+    <div className="shell footer-legal"><span>© 2026 Banana Navy</span><span>Ce prototype ne remplace ni l’AFCN, ni le 1771, ni le 112.</span><div><Link href="/mentions-legales">Mentions légales</Link><Link href="/confidentialite">Confidentialité</Link><Link href="/sources">Sources officielles</Link></div></div></footer>
 
     {panelOpen && <div className="call-panel" role="dialog" aria-modal="true" aria-label="Test du voicebot"><button className="panel-backdrop" onClick={endCall} aria-label="Fermer"/><div className="panel-card"><button className="panel-close" onClick={endCall}>×</button><div className={`voice-orb ${callState}`}>{callState === "connected" ? "≈" : "●"}</div><p className="eyebrow">VOICEBOT INCIDENT NUCLÉAIRE</p><h2>{callState === "connecting" ? "Connexion…" : callState === "connected" ? "Je vous écoute" : callState === "error" ? "Connexion indisponible" : "Prêt"}</h2><p>{callState === "error" ? "Vérifiez l’autorisation du microphone puis réessayez." : "Parlez naturellement. Vous pouvez interrompre le bot."}</p>{callState === "error" ? <button className="call-button" onClick={startCall}>Réessayer</button> : <button className="end-button" onClick={endCall}>Terminer le test</button>}<small>Ce test n’est pas une centrale d’urgence.</small></div></div>}
   </main>;

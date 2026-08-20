@@ -1,4 +1,5 @@
 import { PageCta, SiteFooter, SiteHeader } from "../site-chrome";
+import { assetPath } from "../asset-path";
 
 const sources = [
   ["Belgique", "Centre de Crise National", "Risque nucléaire — préparation, protection et communication de crise", "https://www.risquenucleaire.be/fr"],
@@ -16,7 +17,7 @@ export default function Sources() {
   return <main>
     <SiteHeader active="sources" />
     <section className="subpage-hero shell"><p className="kicker accent">Sources officielles</p><h1>Nos sources de référence</h1><div className="lead"><p>Le contenu du Voicebot n’est pas improvisé. Le corpus est construit à partir de recommandations officielles belges, européennes et internationales.</p><p>Une source permanente explique un principe général. Une situation actuelle exige une publication fraîche, applicable et validée.</p></div></section>
-    <section className="band band-sand"><div className="shell"><div className="source-list">{sources.map(([zone, name, description, url]) => <a className="source-item" href={url} target="_blank" rel="noreferrer" key={url}><img src="/icons/nuclear/document.png" alt="" /><div><p className="kicker">{zone}</p><h2>{name}</h2><p>{description}</p><small>{url}</small></div></a>)}</div><aside className="method-card"><h2>Règle de publication</h2><p>Sans horodatage, statut de santé de la source et approbation humaine, le bot dit qu’il ne dispose pas d’une information officielle actuelle. Il ne transforme jamais un incident historique en alerte en cours.</p></aside></div></section>
+    <section className="band band-sand"><div className="shell"><div className="source-list">{sources.map(([zone, name, description, url]) => <a className="source-item" href={url} target="_blank" rel="noreferrer" key={url}><img src={assetPath("/icons/nuclear/document.png")} alt="" /><div><p className="kicker">{zone}</p><h2>{name}</h2><p>{description}</p><small>{url}</small></div></a>)}</div><aside className="method-card"><h2>Règle de publication</h2><p>Sans horodatage, statut de santé de la source et approbation humaine, le bot dit qu’il ne dispose pas d’une information officielle actuelle. Il ne transforme jamais un incident historique en alerte en cours.</p></aside></div></section>
     <PageCta />
     <SiteFooter />
   </main>;

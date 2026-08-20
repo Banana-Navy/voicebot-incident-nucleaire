@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
 import { PageIntro, SiteFooter, SiteHeader } from "./site-chrome";
+import { assetPath } from "./asset-path";
 
 const AGENT_ID = "agent_5601m0fmedq1eneatyp2m305thfr";
 
@@ -65,7 +66,7 @@ export default function Home() {
     <div className="home-stage">
       <SiteHeader active="home" onTest={startCall} transparent />
       <section className="home-hero" id="top">
-        <picture><source media="(max-width: 700px)" srcSet="/nuclear-hero-mobile.png" /><img className="hero-background" src="/nuclear-hero-desktop.png" alt="Illustration low-poly d’un site nucléaire générique" /></picture>
+        <picture><source media="(max-width: 700px)" srcSet={assetPath("/nuclear-hero-mobile.png")} /><img className="hero-background" src={assetPath("/nuclear-hero-desktop.png")} alt="Illustration low-poly d’un site nucléaire générique" /></picture>
         <div className="hero-overlay" />
         <div className="shell hero-layout">
           <div className="hero-copy">
@@ -73,27 +74,27 @@ export default function Home() {
             <h2>UNE VOIX FIABLE POUR VOUS INFORMER ET VOUS GUIDER</h2>
             <p>Notre assistant vocal restitue des consignes officielles en français, néerlandais et allemand, sans rumeur, sans diagnostic et sans invention.</p>
             <div className="hero-arguments">
-              <article><img src="/icons/nuclear/audio.png" alt="" /><span>Information<br />contrôlée</span></article>
-              <article><img src="/icons/nuclear/shield-check.png" alt="" /><span>Consignes<br />officielles</span></article>
-              <article><img src="/icons/nuclear/people.png" alt="" /><span>Trois langues<br />accessibles</span></article>
+              <article><img src={assetPath("/icons/nuclear/audio.png")} alt="" /><span>Information<br />contrôlée</span></article>
+              <article><img src={assetPath("/icons/nuclear/shield-check.png")} alt="" /><span>Consignes<br />officielles</span></article>
+              <article><img src={assetPath("/icons/nuclear/people.png")} alt="" /><span>Trois langues<br />accessibles</span></article>
             </div>
-            <div className="hero-actions" id="tester"><button className="button button-primary button-large" onClick={startCall}><img src="/icons/nuclear/phone.png" alt="" />Tester le Voicebot</button><a className="text-link" href="#consignes">Comment ça fonctionne</a></div>
+            <div className="hero-actions" id="tester"><button className="button button-primary button-large" onClick={startCall}><img src={assetPath("/icons/nuclear/phone.png")} alt="" />Tester le Voicebot</button><a className="text-link" href="#consignes">Comment ça fonctionne</a></div>
           </div>
         </div>
-        <div className="hero-trust shell"><img src="/icons/nuclear/shield-check.png" alt="" /><span>Ce test ne contacte pas les secours. En danger immédiat : 112.</span></div>
+        <div className="hero-trust shell"><img src={assetPath("/icons/nuclear/shield-check.png")} alt="" /><span>Ce test ne contacte pas les secours. En danger immédiat : 112.</span></div>
       </section>
     </div>
 
     <section className="band band-sand" id="consignes">
       <div className="shell"><PageIntro kicker="Le réflexe officiel" title={<>Rentrez. Fermez. Écoutez.</>}><p>La mise à l’abri est la mesure générale prioritaire. Les autorités déterminent ensuite les mesures adaptées à la situation réelle.</p></PageIntro>
-        <div className="three-card-grid stack-mobile">{reflexes.map(([icon, title, text]) => <article className="content-card" data-reveal key={title}><img className="card-icon" src={icon} alt="" /><h3>{title}</h3><p>{text}</p></article>)}</div>
-        <aside className="official-note" data-reveal><img src="/icons/nuclear/warning.png" alt="" /><div><h3>Comprimés d’iode : jamais de votre propre initiative.</h3><p>Ils protègent uniquement la thyroïde contre l’iode radioactif. Ils ne remplacent pas la mise à l’abri et se prennent seulement sur instruction explicite des autorités.</p></div><a href="https://www.risquenucleaire.be/fr/comprimes-diode" target="_blank" rel="noreferrer">Consulter la source officielle</a></aside>
+        <div className="three-card-grid stack-mobile">{reflexes.map(([icon, title, text]) => <article className="content-card" data-reveal key={title}><img className="card-icon" src={assetPath(icon)} alt="" /><h3>{title}</h3><p>{text}</p></article>)}</div>
+        <aside className="official-note" data-reveal><img src={assetPath("/icons/nuclear/warning.png")} alt="" /><div><h3>Comprimés d’iode : jamais de votre propre initiative.</h3><p>Ils protègent uniquement la thyroïde contre l’iode radioactif. Ils ne remplacent pas la mise à l’abri et se prennent seulement sur instruction explicite des autorités.</p></div><a href="https://www.risquenucleaire.be/fr/comprimes-diode" target="_blank" rel="noreferrer">Consulter la source officielle</a></aside>
       </div>
     </section>
 
     <section className="band band-cool">
       <div className="shell"><PageIntro kicker="Scénarios du Voicebot" title={<>Un vocabulaire visuel cohérent.</>}><p>Ces catégories structurent le dialogue. Elles ne constituent ni un diagnostic de l’événement ni une alerte actuelle.</p></PageIntro>
-        <div className="scenario-grid stack-mobile">{scenarios.map(([icon, label]) => <article className="scenario-card" data-reveal key={label}><img src={icon} alt="" /><h3>{label}</h3></article>)}</div>
+        <div className="scenario-grid stack-mobile">{scenarios.map(([icon, label]) => <article className="scenario-card" data-reveal key={label}><img src={assetPath(icon)} alt="" /><h3>{label}</h3></article>)}</div>
         <div className="center-link"><Link className="text-link" href="/architecture">Voir la technologie et les couches de contrôle</Link></div>
       </div>
     </section>
@@ -107,14 +108,14 @@ export default function Home() {
 
     <section className="band band-cream">
       <div className="shell"><PageIntro kicker="Sources officielles" title={<>Les sources avant les réponses.</>}><p>Aucune FAQ inventée : chaque réponse de sécurité doit remonter à une autorité identifiée et à une publication officielle.</p></PageIntro>
-        <div className="source-preview">{sources.map(([name, desc, url]) => <a key={url} href={url} target="_blank" rel="noreferrer" data-reveal><img src="/icons/nuclear/document.png" alt="" /><div><h3>{name}</h3><p>{desc}</p></div></a>)}</div>
+        <div className="source-preview">{sources.map(([name, desc, url]) => <a key={url} href={url} target="_blank" rel="noreferrer" data-reveal><img src={assetPath("/icons/nuclear/document.png")} alt="" /><div><h3>{name}</h3><p>{desc}</p></div></a>)}</div>
         <div className="center-link"><Link className="text-link" href="/sources">Voir le référentiel complet</Link></div>
       </div>
     </section>
 
-    <section className="page-cta"><div className="shell"><div><h2>Écoutez le Voicebot, maintenant.</h2><p>Vérifiez sa voix, ses limites et la manière dont il restitue les consignes officielles.</p></div><button className="button button-primary button-large" onClick={startCall}><img src="/icons/nuclear/phone.png" alt="" />Tester le Voicebot</button></div></section>
+    <section className="page-cta"><div className="shell"><div><h2>Écoutez le Voicebot, maintenant.</h2><p>Vérifiez sa voix, ses limites et la manière dont il restitue les consignes officielles.</p></div><button className="button button-primary button-large" onClick={startCall}><img src={assetPath("/icons/nuclear/phone.png")} alt="" />Tester le Voicebot</button></div></section>
     <SiteFooter />
 
-    {panelOpen && <div className="call-panel" role="dialog" aria-modal="true" aria-label="Test du Voicebot"><button className="panel-backdrop" onClick={endCall} aria-label="Fermer" /><div className="panel-card"><button className="panel-close" onClick={endCall}>Fermer</button><img className="panel-logo" src="/nuclear-logo.png" alt="" /><p className="kicker accent">VOICEBOT INCIDENT NUCLÉAIRE</p><h2>{callState === "connecting" ? "Connexion…" : callState === "connected" ? "Je vous écoute" : callState === "error" ? "Connexion indisponible" : "Prêt"}</h2><p>{callState === "error" ? "Vérifiez l’autorisation du microphone puis réessayez." : "Parlez naturellement. Vous pouvez interrompre le bot."}</p>{callState === "error" ? <button className="button button-primary" onClick={startCall}>Réessayer</button> : <button className="button button-secondary" onClick={endCall}>Terminer le test</button>}<small>Ce test n’est pas une centrale d’urgence.</small></div></div>}
+    {panelOpen && <div className="call-panel" role="dialog" aria-modal="true" aria-label="Test du Voicebot"><button className="panel-backdrop" onClick={endCall} aria-label="Fermer" /><div className="panel-card"><button className="panel-close" onClick={endCall}>Fermer</button><img className="panel-logo" src={assetPath("/nuclear-logo.png")} alt="" /><p className="kicker accent">VOICEBOT INCIDENT NUCLÉAIRE</p><h2>{callState === "connecting" ? "Connexion…" : callState === "connected" ? "Je vous écoute" : callState === "error" ? "Connexion indisponible" : "Prêt"}</h2><p>{callState === "error" ? "Vérifiez l’autorisation du microphone puis réessayez." : "Parlez naturellement. Vous pouvez interrompre le bot."}</p>{callState === "error" ? <button className="button button-primary" onClick={startCall}>Réessayer</button> : <button className="button button-secondary" onClick={endCall}>Terminer le test</button>}<small>Ce test n’est pas une centrale d’urgence.</small></div></div>}
   </main>;
 }

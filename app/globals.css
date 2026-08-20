@@ -127,19 +127,8 @@ p { text-wrap: pretty; }
 .page-hero h1 { margin: 18px 0 26px; color: var(--navy); font-size: clamp(2.5rem, 4.8vw, 4.4rem); font-weight: 900; text-transform: uppercase; }
 .page-hero .lead { max-width: 610px; }
 .page-hero .lead p { margin: 0 0 14px; }
-.control-diagram { position: relative; display: grid; min-height: 410px; place-items: center; overflow: hidden; border: 1px solid var(--line); border-radius: 32px; background: radial-gradient(circle at center, rgba(242,180,0,.13), transparent 58%), rgba(255,255,255,.38); }
-.diagram-layers { position: relative; width: 250px; height: 240px; }
-.diagram-layer { position: absolute; right: 0; left: 0; height: 88px; margin: auto; transform: skewY(-4deg); border-radius: 22px; box-shadow: 0 22px 34px rgba(18,34,43,.15); }
-.diagram-layer:nth-child(1) { z-index: 3; top: 10px; width: 230px; background: #fbf7ec; }
-.diagram-layer:nth-child(2) { z-index: 2; top: 80px; width: 210px; background: var(--yellow); }
-.diagram-layer:nth-child(3) { z-index: 1; top: 150px; width: 190px; background: var(--navy); }
-.diagram-center { position: absolute; z-index: 4; top: 31px; left: 99px; width: 54px; height: 54px; object-fit: contain; }
-.diagram-node { position: absolute; display: grid; width: 74px; height: 74px; place-items: center; border: 1px solid var(--line); border-radius: 20px; background: var(--surface); box-shadow: var(--shadow-soft); }
-.diagram-node img { width: 46px; height: 46px; object-fit: contain; }
-.diagram-node.one { top: 78px; left: 28px; }
-.diagram-node.two { right: 28px; top: 78px; }
-.diagram-node.three { bottom: 38px; left: 46px; }
-.diagram-node.four { right: 46px; bottom: 38px; }
+.control-diagram { display: block; min-height: 0; overflow: visible; border: 0; border-radius: 0; background: transparent; }
+.control-diagram-image { display: block; width: 100%; height: auto; object-fit: contain; mix-blend-mode: multiply; -webkit-mask-image: radial-gradient(ellipse 94% 94% at center, #000 78%, transparent 100%); mask-image: radial-gradient(ellipse 94% 94% at center, #000 78%, transparent 100%); }
 
 .flow-band { background: var(--sand); }
 .flow-list { display: grid; gap: 12px; }

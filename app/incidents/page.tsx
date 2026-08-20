@@ -1,4 +1,5 @@
 import { PageCta, SiteFooter, SiteHeader } from "../site-chrome";
+import { assetPath } from "../asset-path";
 
 const incidents = [
   { year: "2006", icon: "/icons/nuclear/warning.png", place: "Sterigenics, Fleurus — Belgique", level: "INES 4", title: "Accident d’irradiation", body: "Un opérateur est entré dans une cellule d’irradiation contenant des sources de cobalt 60 et a reçu une dose très élevée. L’AFCN documente un accident touchant le travailleur, pas une exposition générale de la population.", use: "Le bot peut expliquer la différence entre irradiation et contamination, empêcher les extrapolations vers un danger public non confirmé et orienter une exposition suspectée vers le 112.", url: "https://afcn.fgov.be/fr/situations-durgence/evenements-majeurs-en-belgique/dans-le-secteur-industriel-sterigenics-fleurus" },
@@ -11,7 +12,7 @@ export default function Incidents() {
   return <main>
     <SiteHeader active="incidents" />
     <section className="subpage-hero shell"><p className="kicker accent">Chronologie officielle</p><h1>Des faits historiques,<br />jamais des alertes actuelles.</h1><div className="lead"><p>Cette sélection est volontairement limitée aux événements décrits par l’AFCN. Les niveaux INES facilitent la communication sur un événement ; l’AFCN précise qu’ils ne servent pas à comparer la sûreté des installations.</p></div></section>
-    <section className="band band-cool"><div className="shell incident-list">{incidents.map((incident) => <article className="incident-item" key={incident.year + incident.place}><div className="incident-year"><time>{incident.year}</time><span>{incident.level}</span></div><img src={incident.icon} alt="" /><div><p className="kicker accent">{incident.place}</p><h2>{incident.title}</h2><p>{incident.body}</p><aside className="incident-use"><strong>Comment le Voicebot peut être utile</strong>{incident.use}</aside><a className="official-link" href={incident.url} target="_blank" rel="noreferrer">Lire la fiche officielle AFCN</a></div></article>)}</div></section>
+    <section className="band band-cool"><div className="shell incident-list">{incidents.map((incident) => <article className="incident-item" key={incident.year + incident.place}><div className="incident-year"><time>{incident.year}</time><span>{incident.level}</span></div><img src={assetPath(incident.icon)} alt="" /><div><p className="kicker accent">{incident.place}</p><h2>{incident.title}</h2><p>{incident.body}</p><aside className="incident-use"><strong>Comment le Voicebot peut être utile</strong>{incident.use}</aside><a className="official-link" href={incident.url} target="_blank" rel="noreferrer">Lire la fiche officielle AFCN</a></div></article>)}</div></section>
     <PageCta />
     <SiteFooter />
   </main>;

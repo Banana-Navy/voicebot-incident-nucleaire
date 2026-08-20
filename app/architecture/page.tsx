@@ -12,9 +12,9 @@ const flow = [
 ];
 
 const protections = [
-  { num: "01", icon: "/icons/nuclear/network.png", title: "Téléphonie & accès", summary: "Protège le point d’entrée du système.", points: ["Contrôle des connexions entrantes", "Gestion des flux et de la charge", "Limitation des abus", "Isolation du canal vocal"] },
-  { num: "02", icon: "/icons/nuclear/shield-check.png", title: "Sécurité conversationnelle", summary: "Fonctionne parallèlement au moteur.", points: ["Restrictions conversationnelles", "Protection contre le détournement", "Contrôle des actions autorisées", "Gestion du hors périmètre"] },
-  { num: "03", icon: "/icons/nuclear/document.png", title: "Connaissance & règles métier", summary: "Le bot travaille dans un périmètre défini.", points: ["Sources validées comme matière première", "Limites explicites de ce qui peut être dit", "Séparation historique / temps réel", "Validation humaine des consignes"] },
+  { num: "01", icon: "/icons/nuclear/network-shield-hq.png", title: "Téléphonie & accès", summary: "Protège le point d’entrée du système.", points: ["Contrôle des connexions entrantes", "Gestion des flux et de la charge", "Limitation des abus", "Isolation du canal vocal"] },
+  { num: "02", icon: "/icons/nuclear/conversation-shield-hq.png", title: "Sécurité conversationnelle", summary: "Fonctionne parallèlement au moteur.", points: ["Restrictions conversationnelles", "Protection contre le détournement", "Contrôle des actions autorisées", "Gestion du hors périmètre"] },
+  { num: "03", icon: "/icons/nuclear/document-rules-hq.png", title: "Connaissance & règles métier", summary: "Le bot travaille dans un périmètre défini.", points: ["Sources validées comme matière première", "Limites explicites de ce qui peut être dit", "Séparation historique / temps réel", "Validation humaine des consignes"] },
 ];
 
 const parallel = [

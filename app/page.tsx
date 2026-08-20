@@ -8,18 +8,18 @@ import { assetPath } from "./asset-path";
 const AGENT_ID = "agent_5601m0fmedq1eneatyp2m305thfr";
 
 const reflexes = [
-  ["/icons/nuclear/shield-check.png", "Rentrez", "Entrez dans le bâtiment le plus proche et restez à l’intérieur."],
-  ["/icons/nuclear/gear.png", "Fermez", "Fermez portes et fenêtres. Coupez la ventilation si cela peut être fait sans danger."],
-  ["/icons/nuclear/bell.png", "Écoutez", "Suivez BE-Alert, la radio, la télévision et les canaux officiels."],
+  ["/icons/nuclear/shield-check-hq.png", "Rentrez", "Entrez dans le bâtiment le plus proche et restez à l’intérieur."],
+  ["/icons/nuclear/gear-hq.png", "Fermez", "Fermez portes et fenêtres. Coupez la ventilation si cela peut être fait sans danger."],
+  ["/icons/nuclear/bell-hq.png", "Écoutez", "Suivez BE-Alert, la radio, la télévision et les canaux officiels."],
 ];
 
 const scenarios = [
-  ["/icons/nuclear/toxic-cloud.png", "Nuage toxique / fuite de gaz"],
-  ["/icons/nuclear/explosion.png", "Explosion industrielle"],
-  ["/icons/nuclear/fire.png", "Incendie industriel"],
-  ["/icons/nuclear/pollution.png", "Pollution environnementale"],
-  ["/icons/nuclear/evacuation.png", "Évacuation préventive"],
-  ["/icons/nuclear/unknown.png", "Situation indéterminée"],
+  ["/icons/nuclear/toxic-cloud-hq.png", "Nuage toxique / fuite de gaz"],
+  ["/icons/nuclear/explosion-hq.png", "Explosion industrielle"],
+  ["/icons/nuclear/fire-hq.png", "Incendie industriel"],
+  ["/icons/nuclear/pollution-hq.png", "Pollution environnementale"],
+  ["/icons/nuclear/evacuation-hq.png", "Évacuation préventive"],
+  ["/icons/nuclear/unknown-hq.png", "Situation indéterminée"],
 ];
 
 const sources = [

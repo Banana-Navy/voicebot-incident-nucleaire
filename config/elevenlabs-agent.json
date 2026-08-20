@@ -1,0 +1,14 @@
+{
+  "agent_id": "agent_5601m0fmedq1eneatyp2m305thfr",
+  "name": "Incidents nucléaires — Information Belgique",
+  "status": "created-not-production",
+  "phone_number_attached": false,
+  "created_at": "2026-08-20",
+  "required_next_validation": [
+    "remote policy tests",
+    "real transcript in French",
+    "real transcript in Dutch",
+    "real transcript in German",
+    "human review of official guidance"
+  ]
+}

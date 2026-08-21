@@ -18,9 +18,9 @@ const protections = [
 ];
 
 const parallel = [
-  { icon: "/icons/nuclear/audio.png", title: "Sécurité audio", summary: "Surveille le signal avant qu’une réponse métier soit exécutée.", items: [["Analyse et normalisation", "Contrôle du signal et stabilité audio."], ["Détection voix / bruit", "Différenciation entre parole, silence et perturbation."], ["Détection d’anomalies", "Signaux suspects et comportements audio atypiques."]] },
-  { icon: "/icons/nuclear/ai.png", title: "Moteur conversationnel métier", summary: "Comprend et formule une réponse dans les règles autorisées.", items: [["Détection langue & intention", "FR, NL et DE pour ce prototype."], ["Réponse contextualisée", "Contenus officiels et règles de sécurité."], ["Refus explicite", "Aucune consigne actuelle sans donnée validée."]] },
-  { icon: "/icons/nuclear/routing.png", title: "Décision & routage", summary: "Applique les priorités avant toute action.", items: [["Évaluation multi-critères", "Contexte, priorité et niveau de risque."], ["Escalade sûre", "Orientation vers le 112 si le danger est immédiat."], ["Traçabilité", "Journalisation des versions et des décisions techniques."]] },
+  { icon: "/icons/nuclear/parallel-audio-hq.png", title: "Sécurité audio", summary: "Surveille le signal avant qu’une réponse métier soit exécutée.", items: [["Analyse et normalisation", "Contrôle du signal et stabilité audio."], ["Détection voix / bruit", "Différenciation entre parole, silence et perturbation."], ["Détection d’anomalies", "Signaux suspects et comportements audio atypiques."]] },
+  { icon: "/icons/nuclear/parallel-ai-hq.png", title: "Moteur conversationnel métier", summary: "Comprend et formule une réponse dans les règles autorisées.", items: [["Détection langue & intention", "FR, NL et DE pour ce prototype."], ["Réponse contextualisée", "Contenus officiels et règles de sécurité."], ["Refus explicite", "Aucune consigne actuelle sans donnée validée."]] },
+  { icon: "/icons/nuclear/parallel-routing-hq.png", title: "Décision & routage", summary: "Applique les priorités avant toute action.", items: [["Évaluation multi-critères", "Contexte, priorité et niveau de risque."], ["Escalade sûre", "Orientation vers le 112 si le danger est immédiat."], ["Traçabilité", "Journalisation des versions et des décisions techniques."]] },
 ];
 
 const technology = [

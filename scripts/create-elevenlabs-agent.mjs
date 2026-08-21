@@ -10,7 +10,7 @@ if (!apiKey) throw new Error("ELEVENLABS_API_KEY is missing.");
 const headers = { "xi-api-key": apiKey, "content-type": "application/json" };
 const referenceId = "agent_5601m0fmedq1eneatyp2m305thfr";
 const firstMessage = "Hello, and welcome. You are speaking with the Belgian Nuclear and Radiological Incident Information Voicebot. I provide general information based on official sources. If anyone is in immediate danger, call 112 now. How can I help you today?";
-const voice = { id: "onwK4e9ZLuTAKqWW03F9", model: "eleven_flash_v2" };
+const voice = { id: "HKFOb9iktHA85uKXydRT", model: "eleven_v3_conversational" };
 
 const refResponse = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${referenceId}`, { headers });
 if (!refResponse.ok) throw new Error(`Reference agent is unavailable (${refResponse.status}).`);
@@ -39,7 +39,20 @@ config.agent.prompt.knowledge_base = [];
 config.agent.prompt.rag = { ...(config.agent.prompt.rag ?? {}), enabled: false, optional_rag_enabled: false };
 config.agent.prompt.built_in_tools = Object.fromEntries(Object.keys(config.agent.prompt.built_in_tools ?? {}).map((key) => [key, null]));
 config.language_presets = {};
-config.tts = { ...config.tts, model_id: voice.model, voice_id: voice.id, speed: 0.92, stability: 0.58, similarity_boost: 0.8, expressive_mode: false, supported_voices: [] };
+config.tts = {
+  ...config.tts,
+  model_id: voice.model,
+  voice_id: voice.id,
+  speed: 1.03,
+  stability: 0.5,
+  similarity_boost: 0.8,
+  expressive_mode: true,
+  suggested_audio_tags: [
+    { tag: "confident", description: "Use for clear official guidance and decisive instructions." },
+    { tag: "engaging", description: "Use subtly for the welcome and general information; never sound theatrical." },
+  ],
+  supported_voices: [],
+};
 config.asr.keywords = ["nuclear", "radiological", "radioactivity", "radiation", "iodine tablets", "shelter in place", "BE-Alert", "FANC", "Crisis Center", "112", "Tihange", "Doel", "Fleurus", "Mol", "Dessel", "contamination", "evacuation"];
 
 const platform = structuredClone(reference.platform_settings);

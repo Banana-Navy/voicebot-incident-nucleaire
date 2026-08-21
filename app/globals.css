@@ -110,9 +110,10 @@ p { text-wrap: pretty; }
 .official-note p { margin: 0; color: var(--soft); font-size: 13px; }
 .official-note a { border-bottom: 2px solid var(--yellow-deep); font-size: 12px; font-weight: 800; }
 .scenario-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 14px; }
-.scenario-card { min-height: 250px; padding: 22px 14px; text-align: center; }
+.scenario-card { min-height: 350px; padding: 22px 14px; text-align: center; }
 .scenario-card img { width: 138px; height: 138px; margin: 0 auto; object-fit: contain; mix-blend-mode: multiply; }
 .scenario-card h3 { margin: 16px 0 0; font-family: var(--font-sans); font-size: 14px; font-weight: 700; letter-spacing: -.01em; line-height: 1.35; }
+.scenario-card p { margin: 10px 0 0; color: var(--soft); font-size: 11px; line-height: 1.45; }
 .center-link { margin-top: 36px; text-align: center; }
 .incident-preview article { min-height: 310px; border-color: rgba(255,255,255,.09); background: #27343b; color: white; box-shadow: none; }
 .incident-preview time { color: var(--yellow); font-family: var(--font-display); font-size: clamp(2rem, 4vw, 3.4rem); font-weight: 900; }

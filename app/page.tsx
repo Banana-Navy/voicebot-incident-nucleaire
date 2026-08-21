@@ -14,12 +14,12 @@ const reflexes = [
 ];
 
 const scenarios = [
-  ["/icons/nuclear/toxic-cloud-hq.png", "Nuage toxique / fuite de gaz"],
-  ["/icons/nuclear/explosion-hq.png", "Explosion industrielle"],
-  ["/icons/nuclear/fire-hq.png", "Incendie industriel"],
-  ["/icons/nuclear/pollution-hq.png", "Pollution environnementale"],
-  ["/icons/nuclear/evacuation-hq.png", "Évacuation préventive"],
-  ["/icons/nuclear/unknown-hq.png", "Situation indéterminée"],
+  { icon: "/icons/nuclear/toxic-cloud-hq.png", label: "Fumée ou rejet visible", description: "Fumée, vapeur, panache ou phénomène inhabituel observé à proximité d’un site" },
+  { icon: "/icons/nuclear/explosion-hq.png", label: "Explosion ou bruit inhabituel", description: "Détonation, vibration, bruit important ou événement soudain signalé" },
+  { icon: "/icons/nuclear/fire-hq.png", label: "Incendie observé", description: "Flamme, départ de feu ou fumée associée à une installation" },
+  { icon: "/icons/nuclear/pollution-hq.png", label: "Rejet ou contamination suspectée", description: "Liquide, dépôt, odeur ou autre anomalie environnementale observée" },
+  { icon: "/icons/nuclear/evacuation-hq.png", label: "Besoin de mise à l’abri", description: "Questions sur l’évacuation, le confinement, les déplacements ou les proches" },
+  { icon: "/icons/nuclear/unknown-hq.png", label: "Je ne sais pas ce qui se passe", description: null },
 ];
 
 const sources = [
@@ -93,8 +93,8 @@ export default function Home() {
     </section>
 
     <section className="band band-cool">
-      <div className="shell"><PageIntro kicker="Scénarios du Voicebot" title={<>Un vocabulaire visuel cohérent.</>}><p>Ces catégories structurent le dialogue. Elles ne constituent ni un diagnostic de l’événement ni une alerte actuelle.</p></PageIntro>
-        <div className="scenario-grid stack-mobile">{scenarios.map(([icon, label]) => <article className="scenario-card" data-reveal key={label}><img src={assetPath(icon)} alt="" /><h3>{label}</h3></article>)}</div>
+      <div className="shell"><PageIntro kicker="Situations prises en charge" title={<>Décrivez ce que vous observez.<br />Le Voicebot vous guide.</>}><p>Ces catégories structurent le dialogue. Elles ne constituent ni un diagnostic de l’événement ni une alerte actuelle.</p></PageIntro>
+        <div className="scenario-grid stack-mobile">{scenarios.map(({ icon, label, description }) => <article className="scenario-card" data-reveal key={label}><img src={assetPath(icon)} alt="" /><h3>{label}</h3>{description && <p>{description}</p>}</article>)}</div>
         <div className="center-link"><Link className="text-link" href="/architecture">Voir la technologie et les couches de contrôle</Link></div>
       </div>
     </section>

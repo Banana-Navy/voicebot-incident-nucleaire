@@ -1,23 +1,23 @@
 import { readFile } from "node:fs/promises";
 
-if (!process.argv.includes("--confirm-create")) {
-  throw new Error("Add --confirm-create to authorise remote agent creation.");
+if (!process.argv.includes("--confirm-update")) {
+  throw new Error("Add --confirm-update to authorise the remote agent update.");
 }
 
 const apiKey = process.env.ELEVENLABS_API_KEY;
 if (!apiKey) throw new Error("ELEVENLABS_API_KEY is missing.");
 
+const agentId = "agent_5601m0fmedq1eneatyp2m305thfr";
 const headers = { "xi-api-key": apiKey, "content-type": "application/json" };
-const referenceId = "agent_5601m0fmedq1eneatyp2m305thfr";
 const firstMessage = "Hello, and welcome. You are speaking with the Belgian Nuclear and Radiological Incident Information Voicebot. I provide general information based on official sources. If anyone is in immediate danger, call 112 now. How can I help you today?";
 const voice = { id: "onwK4e9ZLuTAKqWW03F9", model: "eleven_flash_v2" };
 
-const refResponse = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${referenceId}`, { headers });
-if (!refResponse.ok) throw new Error(`Reference agent is unavailable (${refResponse.status}).`);
+const currentResponse = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${agentId}`, { headers });
+if (!currentResponse.ok) throw new Error(`Active agent is unavailable (${currentResponse.status}).`);
 
-const reference = await refResponse.json();
+const current = await currentResponse.json();
 const prompt = await readFile(new URL("../agent/system-prompt.md", import.meta.url), "utf8");
-const config = structuredClone(reference.conversation_config);
+const config = structuredClone(current.conversation_config);
 const endCallTool = (config.agent.prompt.tools ?? []).find((tool) => tool.type === "system" && tool.name === "end_call") ?? {
   type: "system",
   name: "end_call",
@@ -42,23 +42,15 @@ config.language_presets = {};
 config.tts = { ...config.tts, model_id: voice.model, voice_id: voice.id, speed: 0.92, stability: 0.58, similarity_boost: 0.8, expressive_mode: false, supported_voices: [] };
 config.asr.keywords = ["nuclear", "radiological", "radioactivity", "radiation", "iodine tablets", "shelter in place", "BE-Alert", "FANC", "Crisis Center", "112", "Tihange", "Doel", "Fleurus", "Mol", "Dessel", "contamination", "evacuation"];
 
-const platform = structuredClone(reference.platform_settings);
-platform.archived = false;
-platform.workspace_overrides = {};
-platform.data_collection = {};
-platform.analysis_items = {};
-delete platform.webhook;
-platform.privacy = { ...platform.privacy, record_voice: true, retention_days: 30, delete_audio: false, delete_transcript_and_pii: false, zero_retention_mode: false };
-
 const payload = {
   name: "Belgian Nuclear Incident Information — English",
   tags: ["nuclear", "radiological", "belgium", "english-only", "prototype"],
   conversation_config: config,
-  platform_settings: platform,
+  version_description: "English-only operational rewrite with formal, informative and assertive safety guidance.",
 };
 
-const response = await fetch("https://api.elevenlabs.io/v1/convai/agents/create", { method: "POST", headers, body: JSON.stringify(payload) });
+const response = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${agentId}`, { method: "PATCH", headers, body: JSON.stringify(payload) });
 const result = await response.json();
-if (!response.ok) throw new Error(`Creation was rejected (${response.status}): ${JSON.stringify(result)}`);
+if (!response.ok) throw new Error(`Update was rejected (${response.status}): ${JSON.stringify(result)}`);
 
-console.log(JSON.stringify({ agent_id: result.agent_id, name: payload.name, language: "en", voice_id: voice.id, phone_number_attached: false }, null, 2));
+console.log(JSON.stringify({ agent_id: agentId, name: payload.name, language: "en", voice_id: voice.id, language_presets: 0 }, null, 2));

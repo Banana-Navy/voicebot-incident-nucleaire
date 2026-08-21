@@ -1,2 +1,16 @@
 import { SiteFooter, SiteHeader } from "../site-chrome";
-export default function Privacy(){return <main><SiteHeader/><section className="subpage-hero shell"><p className="kicker accent">Données &amp; transparence</p><h1>Confidentialité</h1><div className="lead"><p>Ce que le prototype utilise pendant un test vocal et les limites prévues avant production.</p></div></section><section className="legal-content shell"><article><h2>Microphone</h2><p>Le navigateur demande votre autorisation avant d’activer le microphone. Le test peut être arrêté à tout moment. Le microphone n’est pas nécessaire pour consulter les pages du site.</p></article><article><h2>Conversation de démonstration</h2><p>L’agent annonce l’enregistrement après le choix de langue. Dans l’environnement de test, l’audio et la transcription peuvent être conservés pour évaluer la qualité et la sécurité. La configuration actuelle prévoit une rétention de trente jours avant toute décision de production.</p></article><article><h2>Données à ne pas communiquer</h2><p>Le service d’information générale n’a pas besoin de votre nom, adresse complète, numéro national ou dossier médical. En cas de danger, fermez le test et contactez le 112.</p></article><article><h2>Finalités</h2><p>Les données de test servent uniquement à contrôler le comportement du voicebot, identifier une défaillance et documenter les versions. Elles ne doivent pas être utilisées pour établir un diagnostic ou un profil médical.</p></article><article><h2>Contact</h2><p>Pour toute question : <a href="mailto:marc@banana-navy.com">marc@banana-navy.com</a>.</p></article></section><SiteFooter/></main>}
+
+export default function Privacy() {
+  return <main>
+    <SiteHeader />
+    <section className="subpage-hero shell"><p className="kicker accent">Data &amp; transparency</p><h1>Privacy</h1><div className="lead"><p>What the prototype uses during a voice test and the limits that apply before production use.</p></div></section>
+    <section className="legal-content shell">
+      <article><h2>Microphone</h2><p>The browser requests permission before activating the microphone. You may stop the test at any time. A microphone is not required to read the website.</p></article>
+      <article><h2>Demonstration conversation</h2><p>The English opening identifies the service and states that immediate danger requires 112. In the test environment, audio and transcripts may be retained to evaluate quality and safety. The current configuration provides for a thirty-day retention period before any production decision.</p></article>
+      <article><h2>Information you should not provide</h2><p>The general information service does not need your name, complete address, national identification number or medical record. If anyone is in danger, close the test and call 112.</p></article>
+      <article><h2>Purpose</h2><p>Test data is used only to evaluate the voicebot’s behaviour, identify failures and document versions. It must not be used to diagnose a condition or build a medical profile.</p></article>
+      <article><h2>Contact</h2><p>For questions: <a href="mailto:marc@banana-navy.com">marc@banana-navy.com</a>.</p></article>
+    </section>
+    <SiteFooter />
+  </main>;
+}

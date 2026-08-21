@@ -1,21 +1,25 @@
-# Info Nucléaire Belgique
+# Belgian Nuclear Incident Information Voicebot
 
-Prototype documentaire d'un voicebot trilingue et de sa landing page, fondé sur les consignes officielles belges, européennes et internationales.
+An English-only voicebot prototype and multi-page information site based on official Belgian, European and international nuclear and radiological emergency guidance.
 
-## Contenu
+## Contents
 
-- landing multi-page : accueil, sources, incidents historiques, architecture ;
-- prompt système ElevenLabs ;
-- base de connaissances permanente ;
-- architecture Supabase / n8n / MLab ;
-- migration SQL restrictive par défaut.
+- public landing page, source register, historical incident timeline and architecture pages;
+- ElevenLabs system prompt and controlled permanent knowledge;
+- Supabase, n8n and MLab target architecture;
+- restrictive-by-default SQL migrations;
+- English-only remote-agent update tooling.
 
-## Statut
+## Status
 
-Le site est un prototype local. L'agent ElevenLabs `agent_5601m0fmedq1eneatyp2m305thfr` a été créé sans numéro attaché et reste explicitement hors production. Aucun workflow n8n ou projet Supabase de production n'est affirmé comme déployé. Une validation humaine métier et des transcripts réels FR/NL/DE sont requis avant publication.
+The public site and the ElevenLabs agent use the same agent identifier: `agent_5601m0fmedq1eneatyp2m305thfr`. The agent has no attached telephone number and remains a prototype. No production n8n workflow or linked production Supabase project is claimed. Human safety review and a real English conversation transcript remain required before production use.
 
-## Commandes
+## Commands
 
-`npm run dev` — développement.  
-`npm run build` — build de production.  
-`npm test` — build et contrôles de contenu critique.
+`npm run dev` — local development.
+
+`npm run build` — production build.
+
+`npm test` — build and critical-content controls.
+
+`npm run update:agent -- --confirm-update` — apply the approved English-only configuration to the existing ElevenLabs agent.

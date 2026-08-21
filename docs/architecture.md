@@ -1,26 +1,26 @@
-# Architecture cible
+# Target architecture
 
 ```mermaid
 flowchart LR
-  A[Appel telephone ou web] --> B[ElevenLabs Agent FR NL DE]
-  B -->|lecture seulement| C[API Supabase]
-  C --> D[(Instructions approuvees)]
-  C --> E[(Journal audit)]
-  F[AFCN Centre de Crise BE Alert UE AIEA] --> G[Collecte n8n]
-  G --> H{Validation humaine}
-  H -->|approuve| D
-  H -->|rejete| I[Archive non publiable]
-  B -->|danger| J[Consigne appeler 112]
+  A[Telephone or web call] --> B[English-only ElevenLabs agent]
+  B -->|read only| C[Supabase API]
+  C --> D[(Approved English instructions)]
+  C --> E[(Audit log)]
+  F[FANC National Crisis Center BE-Alert EU IAEA] --> G[n8n collection]
+  G --> H{Human validation}
+  H -->|approved| D
+  H -->|rejected| I[Non-publishable archive]
+  B -->|immediate danger| J[Instruction to call 112]
 ```
 
-## Séparation des responsabilités
+## Separation of responsibilities
 
-- ElevenLabs : dialogue, sélection de langue, voix native, appels d'outils et fin d'appel.
-- Supabase : source de vérité versionnée, portée géographique, fenêtre de validité, traductions, audit. RLS active sur toute table exposée ; aucune clé `service_role` côté client.
-- n8n : collecte des publications, détection de changements, demande de validation humaine, publication/retrait, alertes techniques. n8n ne publie pas automatiquement une consigne de sécurité.
-- MLab : observabilité conversationnelle et évaluation, jamais source d'instruction opérationnelle.
-- Humain habilité : seul acteur autorisé à faire passer une consigne de `draft` à `approved`.
+- **ElevenLabs:** English-only dialogue, intent classification, approved tool calls and call termination.
+- **Supabase:** versioned source of truth, geographic scope, validity window, one reviewed English instruction and audit trail. Row-level security applies to every exposed table; a `service_role` key is never shipped to a client.
+- **n8n:** source collection, change detection, human-review requests, publication or withdrawal, and technical alerts. n8n never publishes safety guidance without human approval.
+- **MLab:** conversational observability and evaluation only; it is never an operational instruction source.
+- **Authorised human reviewer:** the only actor permitted to move an instruction from `draft` to `approved`.
 
-## États sûrs
+## Safe states
 
-`draft → in_review → approved → expired/withdrawn`. Le bot ne lit que `approved`, dans la fenêtre de validité et pour la portée géographique exacte. En cas d'échec : réponse de non-disponibilité, jamais la dernière consigne mise en cache.
+`draft → in_review → approved → expired/withdrawn`. The voicebot reads only `approved` records inside their validity window and exact geographic scope. On any source, validation or availability failure, it states that verified current official information is unavailable; it never falls back to the last cached instruction.

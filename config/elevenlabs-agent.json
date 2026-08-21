@@ -1,14 +1,16 @@
 {
   "agent_id": "agent_5601m0fmedq1eneatyp2m305thfr",
-  "name": "Incidents nucléaires — Information Belgique",
+  "name": "Belgian Nuclear Incident Information — English",
   "status": "created-not-production",
+  "language": "en",
+  "voice_id": "onwK4e9ZLuTAKqWW03F9",
+  "voice_name": "Daniel — Steady Broadcaster",
   "phone_number_attached": false,
   "created_at": "2026-08-20",
+  "english_only_since": "2026-08-21",
   "required_next_validation": [
     "remote policy tests",
-    "real transcript in French",
-    "real transcript in Dutch",
-    "real transcript in German",
+    "real English conversation transcript",
     "human review of official guidance"
   ]
 }

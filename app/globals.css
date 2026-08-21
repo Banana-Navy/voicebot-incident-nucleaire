@@ -143,7 +143,7 @@ p { text-wrap: pretty; }
 .flow-row small { max-width: 310px; border-radius: 999px; background: var(--cream); padding: 10px 18px; color: #7c725f; font-size: 11px; text-align: center; }
 .protection-card { min-height: 430px; }
 .protection-card > img { width: 104px; height: 104px; object-fit: contain; }
-.parallel-card > img { width: 72px; height: 72px; object-fit: contain; }
+.parallel-card > img { width: 148px; height: 132px; object-fit: contain; }
 .protection-card > b { display: inline-block; margin-bottom: 24px; color: var(--yellow-deep); font-family: var(--font-display); font-size: 13px; }
 .protection-card ul, .scope-card ul { margin: 24px 0 0; padding-left: 20px; color: var(--soft); font-size: 13px; line-height: 1.8; }
 .parallel-band { background: var(--navy); color: white; }

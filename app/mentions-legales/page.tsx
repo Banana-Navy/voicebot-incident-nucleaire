@@ -1,3 +1,17 @@
 import Link from "next/link";
 import { SiteFooter, SiteHeader } from "../site-chrome";
-export default function Legal(){return <main><SiteHeader/><section className="subpage-hero shell"><p className="kicker accent">Informations légales</p><h1>Mentions légales</h1><div className="lead"><p>Informations relatives au prototype « Voicebot Incident Nucléaire ».</p></div></section><section className="legal-content shell"><article><h2>Éditeur et contact</h2><p><strong>Banana Navy</strong><br/>Rue Antoine de Saint-Exupéry 2<br/>6041 Charleroi, Belgique</p><p>Contact : Marc-Antoine Cajot<br/><a href="tel:+32495277044">+32 495 277 044</a><br/><a href="mailto:marc@banana-navy.com">marc@banana-navy.com</a><br/><a href="https://www.banana-navy.ai">www.banana-navy.ai</a></p></article><article><h2>Nature du service</h2><p>Ce site présente un prototype d’information vocale. Il ne représente ni l’AFCN, ni le Centre de Crise National, ni un exploitant nucléaire, ni un service de secours. Il ne remplace ni le 1771 ni le 112.</p></article><article><h2>Responsabilité</h2><p>Les principes généraux renvoient vers des publications officielles. Une situation réelle doit toujours être suivie à partir des instructions actuelles des autorités. Le service ne fournit aucun diagnostic, calcul de dose, ordre d’évacuation ou instruction de prise d’iode de sa propre initiative.</p></article><article><h2>Propriété intellectuelle</h2><p>Les textes, interfaces et éléments techniques propres au prototype sont protégés. Les marques, publications et emblèmes de tiers restent la propriété de leurs titulaires respectifs.</p></article><article><h2>Sources</h2><p>Le référentiel et les liens directs vers les organismes compétents sont disponibles sur la <Link href="/sources">page Sources officielles</Link>.</p></article></section><SiteFooter/></main>}
+
+export default function Legal() {
+  return <main>
+    <SiteHeader />
+    <section className="subpage-hero shell"><p className="kicker accent">Legal information</p><h1>Legal notice</h1><div className="lead"><p>Information relating to the Nuclear Incident Voicebot prototype.</p></div></section>
+    <section className="legal-content shell">
+      <article><h2>Publisher and contact</h2><p><strong>Banana Navy</strong><br />Rue Antoine de Saint-Exupéry 2<br />6041 Charleroi, Belgium</p><p>Contact: Marc-Antoine Cajot<br /><a href="tel:+32495277044">+32 495 277 044</a><br /><a href="mailto:marc@banana-navy.com">marc@banana-navy.com</a><br /><a href="https://www.banana-navy.ai">www.banana-navy.ai</a></p></article>
+      <article><h2>Nature of the service</h2><p>This website presents an English-language voice-information prototype. It does not represent FANC, the Belgian National Crisis Center, a nuclear operator or an emergency service. It does not replace 1771 or 112.</p></article>
+      <article><h2>Responsibility</h2><p>General principles link to official publications. During a real event, always follow current instructions from the authorities. The service does not provide a diagnosis, a dose calculation, an evacuation order or an instruction to take stable iodine on its own initiative.</p></article>
+      <article><h2>Intellectual property</h2><p>The prototype’s original text, interfaces and technical elements are protected. Third-party trade marks, publications and emblems remain the property of their respective owners.</p></article>
+      <article><h2>Sources</h2><p>The reference register and direct links to the competent organisations are available on the <Link href="/sources">Official Sources page</Link>.</p></article>
+    </section>
+    <SiteFooter />
+  </main>;
+}

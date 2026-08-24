@@ -18,10 +18,16 @@ if (!currentResponse.ok) throw new Error(`Active agent is unavailable (${current
 const current = await currentResponse.json();
 const prompt = await readFile(new URL("../agent/system-prompt.md", import.meta.url), "utf8");
 const config = structuredClone(current.conversation_config);
-const endCallTool = (config.agent.prompt.tools ?? []).find((tool) => tool.type === "system" && tool.name === "end_call") ?? {
+const existingEndCallTool = (config.agent.prompt.tools ?? []).find((tool) =>
+  tool.type === "system" && (tool.params?.system_tool_type === "end_call" || tool.name === "end_call")
+) ?? config.agent.prompt.built_in_tools?.end_call;
+const nuclearEndCallTool = {
+  ...(existingEndCallTool ?? {}),
   type: "system",
   name: "end_call",
-  description: "End the call only after the caller has finished and the agent has said: Thank you for calling.",
+  description: "Nuclear voicebot — end this call only after the caller has finished and the agent has said: Thank you for calling.",
+  pre_tool_speech: "off",
+  params: { ...(existingEndCallTool?.params ?? {}), system_tool_type: "end_call" },
 };
 
 config.agent.first_message = firstMessage;
@@ -31,7 +37,7 @@ config.agent.prompt.prompt = prompt;
 config.agent.prompt.llm = "claude-sonnet-4-5";
 config.agent.prompt.temperature = 0;
 config.agent.prompt.max_tokens = 220;
-config.agent.prompt.tools = [endCallTool];
+config.agent.prompt.tools = [nuclearEndCallTool];
 config.agent.prompt.tool_ids = [];
 config.agent.prompt.mcp_server_ids = [];
 config.agent.prompt.native_mcp_server_ids = [];
@@ -59,7 +65,7 @@ const payload = {
   name: "Belgian Nuclear Incident Information — English",
   tags: ["nuclear", "radiological", "belgium", "english-only", "prototype"],
   conversation_config: config,
-  version_description: "Preserve the selected Russ voice while improving pace, energy and controlled expressiveness.",
+  version_description: "Namespace the active tool description for Nuclear while preserving ElevenLabs' reserved end_call system-tool name.",
 };
 
 const response = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${agentId}`, { method: "PATCH", headers, body: JSON.stringify(payload) });

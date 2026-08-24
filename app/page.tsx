@@ -41,7 +41,47 @@ export default function Home() {
     const heroImage = document.querySelector<HTMLElement>(".hero-background");
     const onScroll = () => heroImage?.style.setProperty("--hero-y", `${Math.min(window.scrollY, 900) * 0.08}px`);
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => { observer.disconnect(); window.removeEventListener("scroll", onScroll); };
+
+    const bentoCleanups: Array<() => void> = [];
+    const pointerQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const reducedMotionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (pointerQuery.matches && !reducedMotionQuery.matches) {
+      const bentos = Array.from(document.querySelectorAll<HTMLElement>("[data-bento]"));
+
+      bentos.forEach((bento) => {
+        const onPointerMove = (event: PointerEvent) => {
+          const bounds = bento.getBoundingClientRect();
+          const x = Math.max(0, Math.min(1, (event.clientX - bounds.left) / bounds.width));
+          const y = Math.max(0, Math.min(1, (event.clientY - bounds.top) / bounds.height));
+
+          bento.style.setProperty("--bento-x", `${(x * 100).toFixed(1)}%`);
+          bento.style.setProperty("--bento-y", `${(y * 100).toFixed(1)}%`);
+          bento.style.setProperty("--bento-rotate-x", `${((0.5 - y) * 4).toFixed(2)}deg`);
+          bento.style.setProperty("--bento-rotate-y", `${((x - 0.5) * 5).toFixed(2)}deg`);
+        };
+
+        const onPointerLeave = () => {
+          bento.style.setProperty("--bento-x", "50%");
+          bento.style.setProperty("--bento-y", "50%");
+          bento.style.setProperty("--bento-rotate-x", "0deg");
+          bento.style.setProperty("--bento-rotate-y", "0deg");
+        };
+
+        bento.addEventListener("pointermove", onPointerMove, { passive: true });
+        bento.addEventListener("pointerleave", onPointerLeave);
+        bentoCleanups.push(() => {
+          bento.removeEventListener("pointermove", onPointerMove);
+          bento.removeEventListener("pointerleave", onPointerLeave);
+        });
+      });
+    }
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("scroll", onScroll);
+      bentoCleanups.forEach((cleanup) => cleanup());
+    };
   }, []);
 
   async function startCall() {
@@ -74,9 +114,9 @@ export default function Home() {
             <h2>A RELIABLE VOICE TO INFORM AND GUIDE YOU</h2>
             <p>Our English-language voicebot provides official guidance without rumour, diagnosis or invention.</p>
             <div className="hero-arguments">
-              <article><img src={assetPath("/icons/nuclear/audio.png")} alt="" /><span>Controlled<br />information</span></article>
-              <article><img src={assetPath("/icons/nuclear/shield-check.png")} alt="" /><span>Official<br />guidance</span></article>
-              <article><img src={assetPath("/icons/nuclear/people.png")} alt="" /><span>English-only<br />service</span></article>
+              <article data-bento><img src={assetPath("/icons/nuclear/audio.png")} alt="" /><span>Controlled<br />information</span></article>
+              <article data-bento><img src={assetPath("/icons/nuclear/shield-check.png")} alt="" /><span>Official<br />guidance</span></article>
+              <article data-bento><img src={assetPath("/icons/nuclear/people.png")} alt="" /><span>English-only<br />service</span></article>
             </div>
             <div className="hero-actions" id="test"><button className="button button-primary button-large" onClick={startCall}><img src={assetPath("/icons/nuclear/phone.png")} alt="" />Test the voicebot</button><a className="text-link" href="#guidance">How it works</a></div>
           </div>
@@ -87,28 +127,28 @@ export default function Home() {
 
     <section className="band band-sand" id="guidance">
       <div className="shell"><PageIntro kicker="The official response" title={<>Go indoors. Close. Listen.</>}><p>Sheltering is the priority general protective measure. The authorities then determine the measures required for the actual situation.</p></PageIntro>
-        <div className="three-card-grid stack-mobile">{reflexes.map(([icon, title, text]) => <article className="content-card" data-reveal key={title}><img className="card-icon" src={assetPath(icon)} alt="" /><h3>{title}</h3><p>{text}</p></article>)}</div>
-        <aside className="official-note" data-reveal><img src={assetPath("/icons/nuclear/warning.png")} alt="" /><div><h3>Never take stable iodine tablets on your own initiative.</h3><p>They protect only the thyroid against radioactive iodine. They do not replace sheltering and must be taken only on explicit instruction from the authorities.</p></div><a href="https://crisiscenter.be/en/newsroom/iodine-tablets-not-necessary-context-current-situation" target="_blank" rel="noreferrer">Consult the official source</a></aside>
+        <div className="three-card-grid stack-mobile">{reflexes.map(([icon, title, text]) => <article className="content-card" data-bento data-reveal key={title}><img className="card-icon" src={assetPath(icon)} alt="" /><h3>{title}</h3><p>{text}</p></article>)}</div>
+        <aside className="official-note" data-bento data-reveal><img src={assetPath("/icons/nuclear/warning.png")} alt="" /><div><h3>Never take stable iodine tablets on your own initiative.</h3><p>They protect only the thyroid against radioactive iodine. They do not replace sheltering and must be taken only on explicit instruction from the authorities.</p></div><a href="https://crisiscenter.be/en/newsroom/iodine-tablets-not-necessary-context-current-situation" target="_blank" rel="noreferrer">Consult the official source</a></aside>
       </div>
     </section>
 
     <section className="band band-cool">
       <div className="shell"><PageIntro kicker="Situations covered" title={<>Describe what you observe.<br />The voicebot will guide you.</>}><p>These categories structure the conversation. They are neither a diagnosis of the event nor confirmation of a current alert.</p></PageIntro>
-        <div className="scenario-grid stack-mobile">{scenarios.map(({ icon, label, description }) => <article className="scenario-card" data-reveal key={label}><img src={assetPath(icon)} alt="" /><h3>{label}</h3>{description && <p>{description}</p>}</article>)}</div>
+        <div className="scenario-grid stack-mobile">{scenarios.map(({ icon, label, description }) => <article className="scenario-card" data-bento data-reveal key={label}><img src={assetPath(icon)} alt="" /><h3>{label}</h3>{description && <p>{description}</p>}</article>)}</div>
         <div className="center-link"><Link className="text-link" href="/architecture">Explore the technology and control layers</Link></div>
       </div>
     </section>
 
     <section className="band band-dark">
       <div className="shell"><PageIntro kicker="History & preparedness" title={<>Past incidents explained without confusion.</>}><p>History helps people understand the service. It never becomes a current alert.</p></PageIntro>
-        <div className="incident-preview stack-mobile"><article data-reveal><time>2006</time><h3>Sterigenics · Fleurus</h3><p>Worker irradiation accident classified at INES Level 4.</p></article><article data-reveal><time>2008</time><h3>IRE · Fleurus</h3><p>Abnormal release of radioactive iodine classified at INES Level 3.</p></article><article data-reveal><time>1986 · 2011</time><h3>Chornobyl · Fukushima</h3><p>Two major accidents documented by FANC and the IAEA.</p></article></div>
+        <div className="incident-preview stack-mobile"><article data-bento data-reveal><time>2006</time><h3>Sterigenics · Fleurus</h3><p>Worker irradiation accident classified at INES Level 4.</p></article><article data-bento data-reveal><time>2008</time><h3>IRE · Fleurus</h3><p>Abnormal release of radioactive iodine classified at INES Level 3.</p></article><article data-bento data-reveal><time>1986 · 2011</time><h3>Chornobyl · Fukushima</h3><p>Two major accidents documented by FANC and the IAEA.</p></article></div>
         <div className="center-link"><Link className="text-link light" href="/incidents">View the official timeline</Link></div>
       </div>
     </section>
 
     <section className="band band-cream">
       <div className="shell"><PageIntro kicker="Official sources" title={<>Sources before answers.</>}><p>No invented FAQ: every safety answer must trace back to an identified authority and an official publication.</p></PageIntro>
-        <div className="source-preview">{sources.map(([name, desc, url]) => <a key={url} href={url} target="_blank" rel="noreferrer" data-reveal><img src={assetPath("/icons/nuclear/document.png")} alt="" /><div><h3>{name}</h3><p>{desc}</p></div></a>)}</div>
+        <div className="source-preview">{sources.map(([name, desc, url]) => <a key={url} href={url} target="_blank" rel="noreferrer" data-bento data-reveal><img src={assetPath("/icons/nuclear/document.png")} alt="" /><div><h3>{name}</h3><p>{desc}</p></div></a>)}</div>
         <div className="center-link"><Link className="text-link" href="/sources">View the complete source register</Link></div>
       </div>
     </section>

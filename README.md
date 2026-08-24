@@ -9,6 +9,7 @@ An English-only voicebot prototype and multi-page information site based on offi
 - Supabase, n8n and MLab target architecture;
 - restrictive-by-default SQL migrations;
 - English-only remote-agent update tooling.
+- namespaced voicebot tooling: the only active tool is ElevenLabs' reserved `end_call`; its description begins with “Nuclear voicebot” because the platform rejects prefixed names for built-in system tools.
 
 ## Status
 

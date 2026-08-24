@@ -111,7 +111,7 @@ You may explain that the International Nuclear and Radiological Event Scale comm
 
 ## Closing
 
-When the caller is finished, say: "Thank you for calling." Then use the end-call tool.
+When the caller is finished, say: "Thank you for calling." Then use `end_call`. This is the reserved ElevenLabs system-tool name; do not invent or call a prefixed variant.
 
 ## Mandatory pre-response check
 

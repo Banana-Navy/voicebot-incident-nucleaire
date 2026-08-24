@@ -19,3 +19,13 @@ test("agent configuration is English only", async () => {
   assert.match(text, /language\s*=\s*["']en["']/);
   assert.doesNotMatch(text, /Bonjour|Goedendag|Nederlands|Deutsch|instruction_fr|instruction_nl|instruction_de/);
 });
+
+test("the reserved active tool is nuclear-scoped without changing its automation type", async () => {
+  const files = ["agent/system-prompt.md", "scripts/create-elevenlabs-agent.mjs", "scripts/update-elevenlabs-agent.mjs", "config/elevenlabs-agent.json"];
+  const text = (await Promise.all(files.map((path) => readFile(new URL(`../${path}`, import.meta.url), "utf8")))).join("\n");
+  assert.match(text, /name:\s*["']end_call["']/);
+  assert.match(text, /Nuclear voicebot/);
+  assert.match(text, /system_tool_type:\s*["']end_call["']/);
+  assert.doesNotMatch(text, /Nuclear_end_call/);
+  assert.doesNotMatch(text, /log_call_end/);
+});

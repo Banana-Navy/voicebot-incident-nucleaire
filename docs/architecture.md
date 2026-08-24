@@ -15,7 +15,7 @@ flowchart LR
 
 ## Separation of responsibilities
 
-- **ElevenLabs:** English-only dialogue, intent classification, approved tool calls and call termination.
+- **ElevenLabs:** English-only dialogue, intent classification, approved tool calls and call termination through the reserved system tool `end_call`. ElevenLabs rejects prefixed names for this built-in tool, so its description begins with “Nuclear voicebot” while its required name and internal type remain unchanged.
 - **Supabase:** versioned source of truth, geographic scope, validity window, one reviewed English instruction and audit trail. Row-level security applies to every exposed table; a `service_role` key is never shipped to a client.
 - **n8n:** source collection, change detection, human-review requests, publication or withdrawal, and technical alerts. n8n never publishes safety guidance without human approval.
 - **MLab:** conversational observability and evaluation only; it is never an operational instruction source.

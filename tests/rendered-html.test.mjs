@@ -38,3 +38,12 @@ test("the verified voicebot demo number is consistently published", async () => 
   assert.match(text, /"phone_number_attached": true/);
   assert.doesNotMatch(text, /line not connected|has no attached telephone number/i);
 });
+
+test("voice delivery stays brisk, assertive and controlled", async () => {
+  const files = ["agent/system-prompt.md", "scripts/create-elevenlabs-agent.mjs", "scripts/update-elevenlabs-agent.mjs", "config/elevenlabs-agent.json"];
+  const text = (await Promise.all(files.map((path) => readFile(new URL(`../${path}`, import.meta.url), "utf8")))).join("\n");
+  assert.match(text, /speed:\s*1\.1/);
+  assert.match(text, /"speed": 1\.1/);
+  assert.match(text, /brisk, purposeful pace/i);
+  assert.match(text, /official and engaged/i);
+});

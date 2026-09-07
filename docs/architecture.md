@@ -2,7 +2,7 @@
 
 ```mermaid
 flowchart LR
-  A[Telephone or web call] --> B[English-only ElevenLabs agent]
+  A[Demo line +32 71 49 61 80 or web call] --> B[English-only ElevenLabs agent]
   B -->|read only| C[Supabase API]
   C --> D[(Approved English instructions)]
   C --> E[(Audit log)]

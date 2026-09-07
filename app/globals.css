@@ -56,6 +56,9 @@ p { text-wrap: pretty; }
 .button:hover { transform: translateY(-2px); box-shadow: var(--shadow-soft); }
 .button:active { transform: scale(.985); }
 .button img { width: 21px; height: 21px; object-fit: contain; }
+.button-with-number { min-height: 62px; text-align: left; }
+.button-with-number > span { display: grid; gap: 1px; line-height: 1.05; }
+.button-with-number small { font-size: 10px; font-weight: 700; letter-spacing: .08em; }
 .button-primary { background: var(--yellow); color: var(--ink); }
 .button-primary:hover { background: #ffc400; }
 .button-secondary { border: 1px solid var(--line); background: var(--surface); color: var(--ink); }
@@ -84,6 +87,7 @@ p { text-wrap: pretty; }
 .hero-actions { display: flex; align-items: center; gap: 30px; margin-top: 26px; }
 .text-link { display: inline-block; border-bottom: 3px solid var(--yellow); padding: 3px 0 5px; color: var(--ink); font-size: 15px; font-weight: 800; }
 .text-link.light { color: white; }
+.text-button { border-top: 0; border-right: 0; border-left: 0; background: transparent; cursor: pointer; }
 .hero-trust { position: absolute; z-index: 3; right: 0; bottom: 20px; left: 0; display: flex; align-items: center; gap: 10px; color: var(--soft); font-size: 12px; }
 .hero-trust img { width: 22px; height: 22px; object-fit: contain; }
 
@@ -191,6 +195,7 @@ p { text-wrap: pretty; }
 .page-cta .shell { display: flex; align-items: center; justify-content: space-between; gap: 44px; padding-block: 46px; }
 .page-cta h2 { margin: 0 0 8px; font-size: clamp(1.8rem, 3vw, 2.7rem); }
 .page-cta p { max-width: 690px; margin: 0; color: rgba(255,255,255,.66); }
+.page-cta-actions { display: flex; flex: 0 0 auto; align-items: center; gap: 24px; }
 .site-footer { background: #e4ebee; padding: 68px 0 20px; }
 .footer-grid { display: grid; grid-template-columns: minmax(0,1fr) minmax(0,1.05fr) minmax(0,.82fr); gap: 58px; }
 .footer-brand { display: grid; grid-template-columns: 112px 1fr; gap: 18px; }
@@ -205,6 +210,7 @@ p { text-wrap: pretty; }
 .footer-contact { border-left: 1px solid rgba(22,42,54,.14); padding-left: 42px; }
 .footer-contact address { display: flex; flex-direction: column; gap: 10px; margin-top: 22px; color: var(--soft); font-size: 13px; font-style: normal; }
 .footer-contact strong { color: var(--ink); text-transform: uppercase; }
+.footer-contact .footer-voicebot-phone { margin-bottom: 10px; color: var(--yellow-deep); font-family: var(--font-display); font-size: 22px; font-weight: 900; letter-spacing: -.02em; }
 .partner-band { display: grid; grid-template-columns: minmax(0,.9fr) minmax(0,1.1fr); gap: 58px; margin-top: 48px; border-top: 1px solid rgba(22,42,54,.14); padding-top: 36px; }
 .partner-logos { display: flex; align-items: center; gap: 24px; margin-top: 22px; }
 .partner-logos img { max-width: 76px; max-height: 55px; object-fit: contain; }
@@ -321,6 +327,8 @@ p { text-wrap: pretty; }
   .hero-actions { position: static; display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 12px; margin-top: 12px; text-align: left; }
   .hero-actions .button { width: 100%; }
   .hero-actions .button-large { min-height: 48px; gap: 8px; padding-inline: 16px; font-size: 10px; }
+  .hero-actions .button-with-number { min-height: 52px; }
+  .hero-actions .button-with-number small { font-size: 8px; }
   .hero-actions .button-large img { width: 18px; height: 18px; }
   .hero-actions .text-link { justify-self: end; border-bottom-width: 2px; font-size: 11px; white-space: nowrap; }
   .hero-trust { bottom: 8px; gap: 6px; padding-inline: 14px; font-size: 8.5px; line-height: 1.25; }
@@ -356,6 +364,7 @@ p { text-wrap: pretty; }
   .incident-item > img { order: -1; }
   .source-item { grid-template-columns: auto 1fr; }
   .page-cta .shell { flex-direction: column; align-items: flex-start; padding-block: 32px; }
+  .page-cta-actions { width: 100%; flex-wrap: wrap; gap: 18px; }
   .site-footer { padding-top: 32px; }
   .footer-grid, .partner-band, .legal-line { grid-template-columns: 1fr; gap: 34px; }
   .footer-brand { grid-template-columns: 92px 1fr; }

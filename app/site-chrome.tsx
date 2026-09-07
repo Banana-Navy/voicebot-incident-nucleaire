@@ -6,9 +6,11 @@ import { assetPath } from "./asset-path";
 
 type HeaderProps = {
   active?: "home" | "architecture" | "incidents" | "sources";
-  onTest?: () => void;
   transparent?: boolean;
 };
+
+export const VOICEBOT_PHONE_E164 = "+3271496180";
+export const VOICEBOT_PHONE_DISPLAY = "+32 71 49 61 80";
 
 const links = [
   { href: "/", label: "Home", key: "home" },
@@ -18,7 +20,7 @@ const links = [
   { href: "/sources", label: "Sources", key: "sources" },
 ] as const;
 
-export function SiteHeader({ active, onTest, transparent = false }: HeaderProps) {
+export function SiteHeader({ active, transparent = false }: HeaderProps) {
   const [open, setOpen] = useState(false);
   return (
     <header className={`site-header ${transparent ? "is-transparent" : ""}`}>
@@ -30,11 +32,7 @@ export function SiteHeader({ active, onTest, transparent = false }: HeaderProps)
         <nav className={open ? "is-open" : ""} aria-label="Main navigation">
           {links.map((link) => <Link key={link.href} className={link.key && active === link.key ? "active" : ""} href={link.href} onClick={() => setOpen(false)}>{link.label}</Link>)}
         </nav>
-        {onTest ? (
-          <button className="button button-primary header-action" onClick={onTest}><img src={assetPath("/icons/nuclear/phone.png")} alt="" />Test the voicebot</button>
-        ) : (
-          <Link className="button button-primary header-action" href="/#test"><img src={assetPath("/icons/nuclear/phone.png")} alt="" />Test the voicebot</Link>
-        )}
+        <a className="button button-primary header-action" href={`tel:${VOICEBOT_PHONE_E164}`} aria-label={`Call the voicebot on ${VOICEBOT_PHONE_DISPLAY}`}><img src={assetPath("/icons/nuclear/phone.png")} alt="" />Call the voicebot</a>
         <button className="menu-button" type="button" aria-label="Open menu" aria-expanded={open} onClick={() => setOpen(!open)}><span /><span /></button>
       </div>
     </header>
@@ -62,7 +60,7 @@ export function SiteFooter() {
         </div>
         <div className="footer-contact">
           <h2 className="kicker muted">Contact</h2>
-          <address><strong>Marc-Antoine Cajot</strong><a href="tel:+32495277044">+32 495 277 044</a><a href="mailto:marc@banana-navy.com">marc@banana-navy.com</a><a href="https://www.banana-navy.ai" target="_blank" rel="noreferrer">www.banana-navy.ai</a><span>Rue Antoine de Saint-Exupéry 2<br />6041 Charleroi, Belgium</span></address>
+          <address><strong>Nuclear voicebot demo line</strong><a className="footer-voicebot-phone" href={`tel:${VOICEBOT_PHONE_E164}`}>{VOICEBOT_PHONE_DISPLAY}</a><strong>Marc-Antoine Cajot</strong><a href="tel:+32495277044">+32 495 277 044</a><a href="mailto:marc@banana-navy.com">marc@banana-navy.com</a><a href="https://www.banana-navy.ai" target="_blank" rel="noreferrer">www.banana-navy.ai</a><span>Rue Antoine de Saint-Exupéry 2<br />6041 Charleroi, Belgium</span></address>
         </div>
       </div>
       <div className="shell partner-band">
@@ -79,5 +77,5 @@ export function PageIntro({ kicker, title, children }: { kicker: string; title: 
 }
 
 export function PageCta() {
-  return <section className="page-cta"><div className="shell"><div><h2>Listen to the voicebot now.</h2><p>A short demonstration lets you verify its voice, its limits and its answers based on official guidance.</p></div><Link className="button button-primary" href="/#test"><img src={assetPath("/icons/nuclear/phone.png")} alt="" />Test the voicebot</Link></div></section>;
+  return <section className="page-cta"><div className="shell"><div><h2>Call the voicebot now.</h2><p>Use the dedicated demo line to hear its voice, its limits and its answers based on official guidance.</p></div><div className="page-cta-actions"><a className="button button-primary button-with-number" href={`tel:${VOICEBOT_PHONE_E164}`}><img src={assetPath("/icons/nuclear/phone.png")} alt="" /><span>Call the voicebot<small>{VOICEBOT_PHONE_DISPLAY}</small></span></a><Link className="text-link light" href="/#test">Test in browser</Link></div></div></section>;
 }

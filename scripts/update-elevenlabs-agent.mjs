@@ -9,7 +9,7 @@ if (!apiKey) throw new Error("ELEVENLABS_API_KEY is missing.");
 
 const agentId = "agent_5601m0fmedq1eneatyp2m305thfr";
 const headers = { "xi-api-key": apiKey, "content-type": "application/json" };
-const firstMessage = "Hello, and welcome. You are speaking with the Belgian Nuclear and Radiological Incident Information Voicebot. I provide general information based on official sources. If anyone is in immediate danger, call 112 now. How can I help you today?";
+const firstMessage = "Hello, and welcome. This is the Belgian Nuclear and Radiological Incident Information Voicebot. I provide general guidance from official sources. If anyone is in immediate danger, call 112 now. How can I help?";
 const voice = { id: "HKFOb9iktHA85uKXydRT", model: "eleven_v3_conversational" };
 
 const currentResponse = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${agentId}`, { headers });
@@ -49,13 +49,13 @@ config.tts = {
   ...config.tts,
   model_id: voice.model,
   voice_id: voice.id,
-  speed: 1.03,
-  stability: 0.5,
+  speed: 1.1,
+  stability: 0.42,
   similarity_boost: 0.8,
   expressive_mode: true,
   suggested_audio_tags: [
     { tag: "confident", description: "Use for clear official guidance and decisive instructions." },
-    { tag: "engaging", description: "Use subtly for the welcome and general information; never sound theatrical." },
+    { tag: "engaging", description: "Use for an energetic, purposeful welcome and general information; never sound theatrical or rushed." },
   ],
   supported_voices: [],
 };
@@ -65,7 +65,7 @@ const payload = {
   name: "Belgian Nuclear Incident Information — English",
   tags: ["nuclear", "radiological", "belgium", "english-only", "prototype"],
   conversation_config: config,
-  version_description: "Namespace the active tool description for Nuclear while preserving ElevenLabs' reserved end_call system-tool name.",
+  version_description: "Make the nuclear voicebot more assertive, official and energetic with a brisker pace and more dynamic delivery.",
 };
 
 const response = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${agentId}`, { method: "PATCH", headers, body: JSON.stringify(payload) });

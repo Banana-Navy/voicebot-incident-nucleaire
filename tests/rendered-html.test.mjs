@@ -29,3 +29,12 @@ test("the reserved active tool is nuclear-scoped without changing its automation
   assert.doesNotMatch(text, /Nuclear_end_call/);
   assert.doesNotMatch(text, /log_call_end/);
 });
+
+test("the verified voicebot demo number is consistently published", async () => {
+  const files = ["app/page.tsx", "app/site-chrome.tsx", "app/architecture/page.tsx", "config/elevenlabs-agent.json", "README.md"];
+  const text = (await Promise.all(files.map((path) => readFile(new URL(`../${path}`, import.meta.url), "utf8")))).join("\n");
+  assert.match(text, /\+32 71 49 61 80/);
+  assert.match(text, /\+3271496180/);
+  assert.match(text, /"phone_number_attached": true/);
+  assert.doesNotMatch(text, /line not connected|has no attached telephone number/i);
+});

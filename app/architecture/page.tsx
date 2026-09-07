@@ -2,7 +2,7 @@ import { PageCta, PageIntro, SiteFooter, SiteHeader } from "../site-chrome";
 import { assetPath } from "../asset-path";
 
 const flow = [
-  ["1", "/icons/nuclear/phone.png", "Voice channel", "The web demonstration is received through WebRTC. A dedicated official telephone line must be connected before operational use.", "WebRTC · line not connected"],
+  ["1", "/icons/nuclear/phone.png", "Voice channel", "Calls arrive through the dedicated demo line +32 71 49 61 80 or through the browser WebRTC demonstration.", "Twilio · ElevenLabs · WebRTC"],
   ["2", "/icons/nuclear/network.png", "Network protection", "Access, load and abnormal behaviour are controlled before the conversation begins.", "Admission · availability"],
   ["3", "/icons/nuclear/audio.png", "Audio analysis", "The signal is transcribed in English and checked for stable speech input.", "English only"],
   ["4", "/icons/nuclear/ai.png", "Domain understanding", "The engine classifies the caller's purpose inside the voicebot's authorised scope.", "ElevenLabs · strict rules"],
@@ -24,7 +24,7 @@ const parallel = [
 ];
 
 const technology = [
-  ["/icons/nuclear/phone.png", "WebRTC voice interface"],
+  ["/icons/nuclear/phone.png", "Telephone and WebRTC voice interfaces"],
   ["/icons/nuclear/audio.png", "Real-time audio processing"],
   ["/icons/nuclear/ai.png", "ElevenLabs voice agent"],
   ["/icons/nuclear/document.png", "Controlled official corpus"],

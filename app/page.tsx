@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useRef, useState } from "react";
-import { PageIntro, SiteFooter, SiteHeader } from "./site-chrome";
+import { PageIntro, SiteFooter, SiteHeader, VOICEBOT_PHONE_DISPLAY, VOICEBOT_PHONE_E164 } from "./site-chrome";
 import { assetPath } from "./asset-path";
 
 const AGENT_ID = "agent_5601m0fmedq1eneatyp2m305thfr";
@@ -104,7 +104,7 @@ export default function Home() {
   return <main>
     <div className="safety-strip">Information prototype — in immediate danger, call <strong>112</strong></div>
     <div className="home-stage">
-      <SiteHeader active="home" onTest={startCall} transparent />
+      <SiteHeader active="home" transparent />
       <section className="home-hero" id="top">
         <picture><source media="(max-width: 700px)" srcSet={assetPath("/nuclear-hero-mobile.png")} /><img className="hero-background" src={assetPath("/nuclear-hero-desktop.png")} alt="Low-poly illustration of a generic nuclear site" /></picture>
         <div className="hero-overlay" />
@@ -118,7 +118,7 @@ export default function Home() {
               <article data-bento><img src={assetPath("/icons/nuclear/shield-check.png")} alt="" /><span>Official<br />guidance</span></article>
               <article data-bento><img src={assetPath("/icons/nuclear/people.png")} alt="" /><span>English-only<br />service</span></article>
             </div>
-            <div className="hero-actions" id="test"><button className="button button-primary button-large" onClick={startCall}><img src={assetPath("/icons/nuclear/phone.png")} alt="" />Test the voicebot</button><a className="text-link" href="#guidance">How it works</a></div>
+            <div className="hero-actions" id="test"><a className="button button-primary button-large button-with-number" href={`tel:${VOICEBOT_PHONE_E164}`}><img src={assetPath("/icons/nuclear/phone.png")} alt="" /><span>Call the voicebot<small>{VOICEBOT_PHONE_DISPLAY}</small></span></a><button className="text-link text-button" type="button" onClick={startCall}>Test in browser</button></div>
           </div>
         </div>
         <div className="hero-trust shell"><img src={assetPath("/icons/nuclear/shield-check.png")} alt="" /><span>This test does not contact emergency services. In immediate danger: 112.</span></div>
@@ -153,7 +153,7 @@ export default function Home() {
       </div>
     </section>
 
-    <section className="page-cta"><div className="shell"><div><h2>Listen to the voicebot now.</h2><p>Verify its voice, its limits and the way it delivers official guidance.</p></div><button className="button button-primary button-large" onClick={startCall}><img src={assetPath("/icons/nuclear/phone.png")} alt="" />Test the voicebot</button></div></section>
+    <section className="page-cta"><div className="shell"><div><h2>Call the voicebot now.</h2><p>Use the dedicated demo line, or test the same agent directly in your browser.</p></div><div className="page-cta-actions"><a className="button button-primary button-large button-with-number" href={`tel:${VOICEBOT_PHONE_E164}`}><img src={assetPath("/icons/nuclear/phone.png")} alt="" /><span>Call the voicebot<small>{VOICEBOT_PHONE_DISPLAY}</small></span></a><button className="text-link light text-button" type="button" onClick={startCall}>Test in browser</button></div></div></section>
     <SiteFooter />
 
     {panelOpen && <div className="call-panel" role="dialog" aria-modal="true" aria-label="Voicebot test"><button className="panel-backdrop" onClick={endCall} aria-label="Close" /><div className="panel-card"><button className="panel-close" onClick={endCall}>Close</button><img className="panel-logo" src={assetPath("/nuclear-logo.png")} alt="" /><p className="kicker accent">NUCLEAR INCIDENT VOICEBOT</p><h2>{callState === "connecting" ? "Connecting…" : callState === "connected" ? "I am listening" : callState === "error" ? "Connection unavailable" : "Ready"}</h2><p>{callState === "error" ? "Check your microphone permission and try again." : "Speak naturally. You may interrupt the voicebot."}</p>{callState === "error" ? <button className="button button-primary" onClick={startCall}>Try again</button> : <button className="button button-secondary" onClick={endCall}>End the test</button>}<small>This test is not an emergency service.</small></div></div>}

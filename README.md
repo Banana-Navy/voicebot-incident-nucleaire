@@ -13,7 +13,7 @@ An English-only voicebot prototype and multi-page information site based on offi
 
 ## Status
 
-The public site and the ElevenLabs agent use the same agent identifier: `agent_5601m0fmedq1eneatyp2m305thfr`. The agent has no attached telephone number and remains a prototype. No production n8n workflow or linked production Supabase project is claimed. Human safety review and a real English conversation transcript remain required before production use.
+The public site and the ElevenLabs agent use the same agent identifier: `agent_5601m0fmedq1eneatyp2m305thfr`. The dedicated demo number `+32 71 49 61 80` is attached to that agent through the ElevenLabs Twilio integration. It is not an emergency service. No production n8n workflow or linked production Supabase project is claimed. Human safety review and a real English telephone conversation transcript remain required before production use.
 
 ## Commands
 

@@ -44,17 +44,22 @@ test("voice delivery stays brisk, assertive and controlled", async () => {
   const text = (await Promise.all(files.map((path) => readFile(new URL(`../${path}`, import.meta.url), "utf8")))).join("\n");
   assert.match(text, /speed:\s*1\.08/);
   assert.match(text, /"speed": 1\.08/);
-  assert.match(text, /brisk, purposeful pace/i);
-  assert.match(text, /authoritative, composed and alert/i);
-  assert.match(text, /stability:\s*0\.44/);
-  assert.match(text, /"stability": 0\.44/);
-  assert.match(text, /Never sound soft, breathy, hesitant/i);
+  assert.match(text, /trained public-information officer in a real phone conversation/i);
+  assert.match(text, /stability:\s*0\.38/);
+  assert.match(text, /"stability": 0\.38/);
+  assert.match(text, /temperature\s*=\s*0\.4/);
+  assert.match(text, /suggested_audio_tags:\s*\[\]/);
+  assert.match(text, /text_normalisation_type:\s*"elevenlabs"/);
+  assert.match(text, /Do not output bracketed audio tags/i);
+  assert.match(text, /one continuous spoken paragraph/i);
+  assert.match(text, /Never use stock closers/i);
+  assert.match(text, /interruption_ignore_term_languages\s*=\s*\["en"\]/);
   assert.match(text, /8Ln42OXYupYsag45MAUy/);
 });
 
 test("the opening routes the caller without implying an official report was submitted", async () => {
   const files = ["agent/system-prompt.md", "scripts/create-elevenlabs-agent.mjs", "scripts/update-elevenlabs-agent.mjs"];
   const text = (await Promise.all(files.map((path) => readFile(new URL(`../${path}`, import.meta.url), "utf8")))).join("\n");
-  assert.match(text, /Are you calling about something happening now, or do you want general guidance on what to do if an incident occurs\?/);
+  assert.match(text, /Are you calling about something happening now, or would you like general guidance on what to do if an incident occurs\?/);
   assert.match(text, /cannot transmit an official incident report/i);
 });

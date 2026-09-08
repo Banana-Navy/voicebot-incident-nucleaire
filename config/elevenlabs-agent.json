@@ -8,9 +8,17 @@
   "voice_tuning": {
     "model_id": "eleven_v3_conversational",
     "speed": 1.08,
-    "stability": 0.44,
+    "stability": 0.38,
     "similarity_boost": 0.75,
-    "expressive_mode": true
+    "expressive_mode": true,
+    "suggested_audio_tags": [],
+    "text_normalisation_type": "elevenlabs",
+    "llm_temperature": 0.4
+  },
+  "turn_taking": {
+    "turn_eagerness": "normal",
+    "interruption_ignore_terms": ["uh-huh", "mm-hmm", "mhm", "hmm", "right", "okay"],
+    "interruption_ignore_term_languages": ["en"]
   },
   "tools": {
     "call_termination": {

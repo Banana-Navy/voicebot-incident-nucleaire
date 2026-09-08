@@ -9,8 +9,8 @@ if (!apiKey) throw new Error("ELEVENLABS_API_KEY is missing.");
 
 const headers = { "xi-api-key": apiKey, "content-type": "application/json" };
 const referenceId = "agent_5601m0fmedq1eneatyp2m305thfr";
-const firstMessage = "Hello, and welcome. This is the Belgian Nuclear and Radiological Incident Information Voicebot. I provide general guidance from official sources. If anyone is in immediate danger, call 112 now. How can I help?";
-const voice = { id: "HKFOb9iktHA85uKXydRT", model: "eleven_v3_conversational" };
+const firstMessage = "Hello. This is the Belgian Nuclear and Radiological Incident Information Voicebot. If anyone is in immediate danger, call 112 now. Are you calling about something happening now, or do you want general guidance on what to do if an incident occurs?";
+const voice = { id: "8Ln42OXYupYsag45MAUy", model: "eleven_v3_conversational" };
 
 const refResponse = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${referenceId}`, { headers });
 if (!refResponse.ok) throw new Error(`Reference agent is unavailable (${refResponse.status}).`);
@@ -49,13 +49,13 @@ config.tts = {
   ...config.tts,
   model_id: voice.model,
   voice_id: voice.id,
-  speed: 1.1,
-  stability: 0.42,
-  similarity_boost: 0.8,
+  speed: 1.08,
+  stability: 0.44,
+  similarity_boost: 0.75,
   expressive_mode: true,
   suggested_audio_tags: [
-    { tag: "confident", description: "Use for clear official guidance and decisive instructions." },
-    { tag: "engaging", description: "Use for an energetic, purposeful welcome and general information; never sound theatrical or rushed." },
+    { tag: "confident", description: "Use as the default: serious, authoritative and decisive, with firm sentence endings." },
+    { tag: "engaging", description: "Use sparingly to add natural energy without warmth that sounds casual, soft or theatrical." },
   ],
   supported_voices: [],
 };

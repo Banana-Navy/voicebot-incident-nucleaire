@@ -9,8 +9,8 @@ if (!apiKey) throw new Error("ELEVENLABS_API_KEY is missing.");
 
 const agentId = "agent_5601m0fmedq1eneatyp2m305thfr";
 const headers = { "xi-api-key": apiKey, "content-type": "application/json" };
-const firstMessage = "Hello, and welcome. This is the Belgian Nuclear and Radiological Incident Information Voicebot. I provide general guidance from official sources. If anyone is in immediate danger, call 112 now. How can I help?";
-const voice = { id: "HKFOb9iktHA85uKXydRT", model: "eleven_v3_conversational" };
+const firstMessage = "Hello. This is the Belgian Nuclear and Radiological Incident Information Voicebot. If anyone is in immediate danger, call 112 now. Are you calling about something happening now, or do you want general guidance on what to do if an incident occurs?";
+const voice = { id: "8Ln42OXYupYsag45MAUy", model: "eleven_v3_conversational" };
 
 const currentResponse = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${agentId}`, { headers });
 if (!currentResponse.ok) throw new Error(`Active agent is unavailable (${currentResponse.status}).`);
@@ -49,13 +49,13 @@ config.tts = {
   ...config.tts,
   model_id: voice.model,
   voice_id: voice.id,
-  speed: 1.1,
-  stability: 0.42,
-  similarity_boost: 0.8,
+  speed: 1.08,
+  stability: 0.44,
+  similarity_boost: 0.75,
   expressive_mode: true,
   suggested_audio_tags: [
-    { tag: "confident", description: "Use for clear official guidance and decisive instructions." },
-    { tag: "engaging", description: "Use for an energetic, purposeful welcome and general information; never sound theatrical or rushed." },
+    { tag: "confident", description: "Use as the default: serious, authoritative and decisive, with firm sentence endings." },
+    { tag: "engaging", description: "Use sparingly to add natural energy without warmth that sounds casual, soft or theatrical." },
   ],
   supported_voices: [],
 };
@@ -65,7 +65,7 @@ const payload = {
   name: "Belgian Nuclear Incident Information — English",
   tags: ["nuclear", "radiological", "belgium", "english-only", "prototype"],
   conversation_config: config,
-  version_description: "Make the nuclear voicebot more assertive, official and energetic with a brisker pace and more dynamic delivery.",
+  version_description: "Use the selected Jay Wayne voice and route callers immediately between a current observation and general preparedness guidance.",
 };
 
 const response = await fetch(`https://api.elevenlabs.io/v1/convai/agents/${agentId}`, { method: "PATCH", headers, body: JSON.stringify(payload) });

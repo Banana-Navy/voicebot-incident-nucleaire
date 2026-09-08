@@ -116,7 +116,7 @@ export default function Home() {
             <div className="hero-arguments">
               <article data-bento><img src={assetPath("/icons/nuclear/audio.png")} alt="" /><span>Controlled<br />information</span></article>
               <article data-bento><img src={assetPath("/icons/nuclear/shield-check.png")} alt="" /><span>Official<br />guidance</span></article>
-              <article data-bento><img src={assetPath("/icons/nuclear/people.png")} alt="" /><span>English-only<br />service</span></article>
+              <article data-bento><img src={assetPath("/icons/nuclear/people.png")} alt="" /><span>English Demo<br />Version</span></article>
             </div>
             <div className="hero-actions" id="test"><a className="button button-primary button-large button-with-number" href={`tel:${VOICEBOT_PHONE_E164}`}><img src={assetPath("/icons/nuclear/phone.png")} alt="" /><span>Call the voicebot<small>{VOICEBOT_PHONE_DISPLAY}</small></span></a><button className="text-link text-button" type="button" onClick={startCall}>Test in browser</button></div>
           </div>

@@ -3,13 +3,13 @@
   "name": "Belgian Nuclear Incident Information — English",
   "status": "demo-line-connected-not-emergency-service",
   "language": "en",
-  "voice_id": "HKFOb9iktHA85uKXydRT",
-  "voice_name": "Russ — Deep, Smooth and Articulate",
+  "voice_id": "8Ln42OXYupYsag45MAUy",
+  "voice_name": "Jay Wayne — Wise University Professor",
   "voice_tuning": {
     "model_id": "eleven_v3_conversational",
-    "speed": 1.1,
-    "stability": 0.42,
-    "similarity_boost": 0.8,
+    "speed": 1.08,
+    "stability": 0.44,
+    "similarity_boost": 0.75,
     "expressive_mode": true
   },
   "tools": {
